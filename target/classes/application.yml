@@ -1,5 +1,9 @@
 spring:
   profiles.active: local
+
+server:
+  port: 8081
+  display-name: interpersonal-lv
 ---
 spring:
   profiles: local
