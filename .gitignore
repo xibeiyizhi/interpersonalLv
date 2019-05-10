@@ -30,4 +30,4 @@
 .mvn
 
 .DS_Store
-.idea/**
+.idea/*.xml
