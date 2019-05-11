@@ -46,34 +46,112 @@ body {
 }
 
 #content {
-
+    /*background-image: url("/static/body_bg.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: contain;*/
+    /*background-position: center;*/
+    z-index: -999;
 }
 
 .tab {
-    position: absolute;
-    top: 20%;
-    left: 13%;
-    width: 15%;
-    height: 50%;
-    border: 1px solid cadetblue;
-    border-radius:5px;
-    -moz-box-shadow:2px 2px 5px#d3c998;/*firefox*/
-    -webkit-box-shadow:2px 2px 5px#d3c998;/*webkit*/
-    box-shadow:2px 2px 5px #d3c998;/*opera或ie9*/
+    position: inherit;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius:50%;
+    background-image: url("/static/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gold;
+    -moz-box-shadow:2px 2px 5px darkgoldenrod;/*firefox*/
+    -webkit-box-shadow:2px 2px 5px darkgoldenrod;/*webkit*/
+    box-shadow:2px 2px 5px darkgoldenrod;/*opera或ie9*/
 }
 
-#father {
+.holiday {
+    /*background-image: url("/static/holiday.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    z-index: 0;
+}
 
+.photo{
+    width: 100%;
+    height: 100%;
+    border-radius:50%;
+}
+
+#father, #mother,#daughter,#son {
+    position: absolute;
+    top: 60%;
+    left: 13%;
+    width: 15%;
+    height: 20%;
+    border-radius:50%;
+    z-index: 2;
+}
+
+#father .photo{
+    background-image: url("/static/father.JPG");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 #daughter {
-    left: 33%;
+    left: 53%;
+}
+#daughter .photo{
+    background-image: url("/static/daughter.JPG");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 #son {
-    left: 53%;
+    left: 73%;
+}
+#son .photo{
+    background-image: url("/static/son.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 #mother {
-    left: 73%;
+    left: 33%;
+}
+#mother .photo{
+    background-image: url("/static/mother.jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#dialog {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
+}
+
+.dialog-content {
+    width: 100%;
+    height: 100%;
+    /*background-image: url("/static/dialog_bg.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: contain;*/
+}
+
+.dialog-word {
+    width: 70%;
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 5px;
 }

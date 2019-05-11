@@ -1,24 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:http="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>index</title>
     <link href="/static/index.css" rel="stylesheet" type="text/css" />
-
-    <script>
-
+    <script type="text/javascript">
+        function init() {
+            var ele = document.getElementById("father");
+            ele.addEventListener('click', function (ev) {
+                alert(111);
+            })
+        }
+        function test() {
+            var request = new XMLHttpRequest();
+            var timeout = false;
+            var timer = setTimeout( function(){
+                timeout = true;
+                request.abort();
+            }, 2000 );
+            request.open( "GET", "/detail?who=" + id );
+            request.onreadystatechange = function(){
+                if( request.readyState !== 4 ) return;
+                if( timeout ) return;
+                clearTimeout( timer );
+                if( request.status === 200 ){
+                    console.log("scuess");
+                }
+            }
+            request.send( null );
+        }
     </script>
 </head>
-<body>
+<body onload="init()">
     <div id="lt" class="corner" ></div>
     <div id="rt" class="corner" ></div>
     <div id="lb" class="corner" ></div>
     <div id="rb" class="corner" ></div>
     <div id="content">
-        <div id="father" class="tab"></div>
-        <div id="daughter" class="tab"></div>
-        <div id="son" class="tab"></div>
-        <div id="mother" class="tab"></div>
+        <div id="father" >
+            <div class="tab">
+                <div class="photo"></div>
+            </div>
+        </div>
+        <div id="mother" class="holiday">
+            <div class="tab" >
+                <div class="photo"></div>
+            </div>
+        </div>
+        <div id="daughter">
+            <div class="tab">
+                <div class="photo"  onclick="test(this.id)"></div>
+            </div>
+        </div>
+        <div id="son">
+            <div class="tab">
+                <div class="photo"  onclick="test(this.id)"></div>
+            </div>
+        </div>
+
+        <div id="dialog">
+            <div id="dialogContent" class="dialog-content">
+                <img src="/static/mothersday.png" alt="#" style="width: 100%; height: 100%"/>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>

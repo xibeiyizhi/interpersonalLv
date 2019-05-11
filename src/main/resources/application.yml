@@ -14,3 +14,5 @@ spring:
     proxy-target-class: true
   resources:
     add-mappings: false
+  thymeleaf:
+    cache: false
