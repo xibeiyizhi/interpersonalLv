@@ -13,7 +13,7 @@ window.onload = function() {
             this.pause = 1;
         };
     }
-    setInterval(starmove, 100);
+    setInterval(starmove, 150);
 
     function starmove() {
         for (i = 0; i < aA.length; i++) {
@@ -30,7 +30,9 @@ window.onload = function() {
             obj.style.display = "block";
             initialize(obj);
         } else {
-            obj.style.top = obj.offsetTop - obj.ispeed + "px";
+            obj.style.top = (obj.offsetTop - obj.ispeed) + "px";
+            console.log('offsetTop=' + obj.offsetTop)
+            console.log('ispeed=' + obj.ispeed)
         }
     }
 

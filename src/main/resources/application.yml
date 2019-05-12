@@ -1,8 +1,9 @@
 spring:
-  profiles.active: local
-
+  profiles:
+    active: local
 server:
   port: 8081
+
 ---
 spring:
   profiles: local
@@ -15,7 +16,4 @@ spring:
     add-mappings: false
   thymeleaf:
     cache: false
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: src/main/java
+
