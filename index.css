@@ -10,28 +10,28 @@ body {
 }
 
 #lt {
-    background-image: url("/static/lt_m.png");
+    background-image: url("/static/img/index/lt_m.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: left top;
 }
 
 #rt {
-    background-image: url("/static/rt_m.png");
+    background-image: url("/static/img/index/rt_m.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: right top;
 }
 
 #lb {
-    background-image: url("/static/lb_m.png");
+    background-image: url("/static/img/index/lb_m.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: left bottom;
 }
 
 #rb {
-    background-image: url("/static/rb_m.png");
+    background-image: url("/static/img/index/rb_m.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: right bottom;

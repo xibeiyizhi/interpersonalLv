@@ -3,7 +3,6 @@ spring:
 
 server:
   port: 8081
-  display-name: interpersonal-lv
 ---
 spring:
   profiles: local
@@ -16,3 +15,7 @@ spring:
     add-mappings: false
   thymeleaf:
     cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
