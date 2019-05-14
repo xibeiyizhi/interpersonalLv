@@ -17,10 +17,24 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
+        return mav;
+    }
+
+    @RequestMapping(value = "/blog", method = RequestMethod.GET)
+    public ModelAndView blog() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("blog");
+        return mav;
+    }
+
+    @RequestMapping(value = "/singlepost", method = RequestMethod.GET)
+    public ModelAndView singlePost() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("single-post");
         return mav;
     }
 
