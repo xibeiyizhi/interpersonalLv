@@ -17,6 +17,13 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView root() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+        return mav;
+    }
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView mav = new ModelAndView();
