@@ -6,7 +6,6 @@ import club.own.site.bean.MachineInfo;
 import club.own.site.utils.NumberUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.hyperic.sigar.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -59,7 +57,7 @@ public class DataController extends BaseController{
                 diskInfo.setFree(NumberUtils.formatFloat(usage.getFree() / 1024d /1024d / 10d));
                 diskInfo.setAvail(NumberUtils.formatFloat(usage.getAvail() / 1024d /1024d / 10d));
                 diskInfo.setUsed(NumberUtils.formatFloat(usage.getUsed() / 1024d /1024d / 10d));
-                diskInfo.setUsePercent(NumberUtils.formatFloat(usage.getUsePercent() * 1000));
+                diskInfo.setUsePercent(NumberUtils.formatFloat(usage.getUsePercent() * 100));
             }
         }
         return toEChartsBarData(diskInfo);
