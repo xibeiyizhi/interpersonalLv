@@ -129,7 +129,7 @@
                         option: {
                             legend: {
                                 right: 'center',
-                                bottom: 0,
+                                bottom: 10,
                                 orient: 'horizontal'
                             },
                             series: []
@@ -142,7 +142,7 @@
                         option: {
                             legend: {
                                 right: 'center',
-                                bottom: 0,
+                                bottom: 10,
                                 orient: 'horizontal'
                             },
                             series: []
@@ -155,7 +155,7 @@
                         option: {
                             legend: {
                                 right: 'center',
-                                bottom: 0,
+                                bottom: 10,
                                 orient: 'horizontal'
                             },
                             series: []
@@ -163,7 +163,7 @@
                     },
                     {
                         query: {
-                            maxWidth: 400
+                            maxWidth: 500
                         },
                         option: {
                             legend: {
@@ -191,18 +191,20 @@
                     };
                     cupOption.baseOption.series.push(cpuInfo);
                     cupOption.media.forEach(function (item) {
-                        var x, y, width;
+                        var x, y, width, innerWidth;
                         if (item.query == null || item.query.minAspectRatio) {
                             x = (chartSize + chartSize * i + (obj.length > 1 ? chartSize/(obj.length-1) : 0)) + '%';
                             y = '50%';
                             width = chartSize + "%";
+                            innerWidth = chartSize * 0.3 + '%';
                         } else if (item.query.maxAspectRatio || item.query.maxWidth) {
                             x = '50%';
                             y = (chartSize + chartSize * i + (obj.length > 1 ? chartSize/(obj.length-1) : 0)) + '%';
                             width = chartSize + "%";
+                            innerWidth = chartSize * 0.3 + '%';
                         }
                         item.option.series.push({
-                           radius: [5, width],
+                           radius: [innerWidth, width],
                            center: [x, y]
                         });
                     })
@@ -228,7 +230,8 @@
                     trigger: 'item'
                 },
                 legend: {
-                    top: '15%',
+                    width: '90%',
+                    top: '10%',
                     data:[]
                 },
                 toolbox: {
@@ -247,7 +250,7 @@
                     {
                         type : 'value',
                         max: function (value) {
-                            return value.max + 5;
+                            return value.max + 3;
                         },
                         axisLabel : {
                             formatter: '{value}'
@@ -295,7 +298,7 @@
                     memOption.legend.data = names;
                     memChart.setOption(memOption);
                 });
-            }, 1000);
+            }, 3000);
         </script>
         <script>
             var diskObj = document.getElementById("disk");
@@ -326,7 +329,8 @@
                     }
                 },
                 legend: {
-                    top: '15%'
+                    width: '80%',
+                    top: '10%'
                 },
                 xAxis: {
                     data: []
