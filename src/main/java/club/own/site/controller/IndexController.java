@@ -45,6 +45,13 @@ public class IndexController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(value = "/stat", method = RequestMethod.GET)
+    public ModelAndView statistics() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("statistics");
+        return mav;
+    }
+
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(@RequestParam(name = "id") String name) throws Exception {
         ModelAndView mav = new ModelAndView();
