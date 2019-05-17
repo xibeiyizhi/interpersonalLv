@@ -52,6 +52,27 @@ public class IndexController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public ModelAndView welcome() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("welcome");
+        return mav;
+    }
+
+    @RequestMapping(value = "/lab", method = RequestMethod.GET)
+    public ModelAndView lab() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("lab");
+        return mav;
+    }
+
+    @RequestMapping(value = "/future", method = RequestMethod.GET)
+    public ModelAndView future() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("future");
+        return mav;
+    }
+
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView detail(@RequestParam(name = "id") String name) throws Exception {
         ModelAndView mav = new ModelAndView();

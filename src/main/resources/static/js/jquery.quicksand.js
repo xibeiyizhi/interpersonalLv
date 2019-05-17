@@ -41,7 +41,7 @@ Github site: http://github.com/razorjack/quicksand
       adjustWidth : 'auto',         // 'dynamic' animates width during shuffling (slow), 
                                     // 'auto' adjusts it before or after the animation, false leaves width constant
       useScaling : false,           // enable it if you're using scaling effect
-      enhancement : function(c) {}, // Visual enhacement (eg. font replacement) function for cloned elements
+      enhancement : function(c) {}, // Visual enhacement (eg. fonts replacement) function for cloned elements
       selector : '> *',
       atomic : false,
       dx : 0,
