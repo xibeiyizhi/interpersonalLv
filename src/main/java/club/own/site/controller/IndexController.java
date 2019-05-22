@@ -31,6 +31,13 @@ public class IndexController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(value = "/services", method = RequestMethod.GET)
+    public ModelAndView service() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("services");
+        return mav;
+    }
+
     @RequestMapping(value = "/blog", method = RequestMethod.GET)
     public ModelAndView blog() throws Exception {
         ModelAndView mav = new ModelAndView();

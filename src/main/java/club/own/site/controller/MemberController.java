@@ -2,6 +2,7 @@ package club.own.site.controller;
 
 import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -66,7 +67,17 @@ public class MemberController extends BaseController {
                     }
                 }
             }
+            if(member != null && StringUtils.isNotBlank(member.getMobile())) {
+                try{
+                    redisClient.set(member.getMobile(), JSON.toJSONString(member));
+                } catch (Exception e) {
+                    log.error("error:redis store fail", e);
+                    return "error:redis store fail";
+                }
+            }
         }
-        return "success";
+        return "OK";
     }
+
+
 }
