@@ -5,6 +5,37 @@ server:
   port: 8081
 
 ---
+
+spring:
+  profiles: prodction
+  mvc:
+    throw-exception-if-no-handler-found: true
+  aop:
+    auto: true
+    proxy-target-class: true
+  resources:
+    add-mappings: false
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1MB
+      max-request-size: 10MB
+redis:
+  host: 114.115.178.17
+  port: 6379
+  db: -1
+  pool:
+    max-active: 200
+    max-wait: 10000
+    max-idle: 10
+    min-idle: 10
+  password: 123456
+
+basePath: /root/webapps/interpersonal_lv/fileStore
+
+---
 spring:
   profiles: local
   mvc:
@@ -32,3 +63,4 @@ redis:
     min-idle: 10
   password: 123456
 
+basePath: C:\Users\Administrator.SC-201901041151\Pictures

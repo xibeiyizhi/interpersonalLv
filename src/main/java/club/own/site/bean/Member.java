@@ -1,9 +1,13 @@
 package club.own.site.bean;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Member {
+    private long id;
     private String name;
     private String profession;
     private String message;
@@ -11,14 +15,5 @@ public class Member {
     private String email;
     private String address;
     private String firstImgUrl;
-
-    public Member(String name, String profession, String message, String mobile, String email, String address) {
-        this.name = name;
-        this.profession = profession;
-        this.message = message;
-        this.mobile = mobile;
-        this.email = email;
-        this.address = address;
-    }
-
+    private List<String> photos = Lists.newArrayList();
 }

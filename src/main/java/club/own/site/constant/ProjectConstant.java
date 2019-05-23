@@ -8,4 +8,7 @@ public class ProjectConstant {
         DAUGHTER,
         SON;
     }
+
+    public static final String MEMBER_LIST_KEY = "member_list";
+    public static final String MEMBER_TAGS_KEY = "member_tag";
 }

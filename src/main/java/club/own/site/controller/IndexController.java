@@ -79,38 +79,4 @@ public class IndexController extends BaseController {
         mav.setViewName("future");
         return mav;
     }
-
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public ModelAndView detail(@RequestParam(name = "id") String name) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("name", name.toUpperCase());
-        List<Img> imgList = new ArrayList<>();
-        List<String> tagList = new ArrayList<>();
-        Quotation quotation = new Quotation();
-        if (name.toUpperCase().equals(ProjectConstant.MemberEnum.FATHER.name())) {
-            for (int i=1; i<=10; i++) {
-                imgList.add(new Img("father"+i, "pic"+i));
-            }
-            tagList.addAll(quotation.getFatherSay());
-        } else if (name.toUpperCase().equals(ProjectConstant.MemberEnum.MOTHER.name())) {
-            for (int i=1; i<=10; i++) {
-                imgList.add(new Img("mother"+i, "pic"+i));
-            }
-            tagList.addAll(quotation.getMonSay());
-        } else if (name.toUpperCase().equals(ProjectConstant.MemberEnum.DAUGHTER.name())) {
-            for (int i=1; i<=10; i++) {
-                imgList.add(new Img("daughter"+i, "pic"+i));
-            }
-            tagList.addAll(quotation.getSisSay());
-        } else if (name.toUpperCase().equals(ProjectConstant.MemberEnum.SON.name())) {
-            for (int i=1; i<=10; i++) {
-                imgList.add(new Img("son"+i, "pic"+i));
-            }
-            tagList.addAll(quotation.getiSay());
-        }
-        mav.addObject("imgList", imgList);
-        mav.addObject("tagList", tagList);
-        mav.setViewName("detail");
-        return mav;
-    }
 }

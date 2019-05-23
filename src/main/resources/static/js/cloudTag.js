@@ -1,6 +1,6 @@
 window.onload = function() {
     var oDiv = document.getElementById('cloudTag');
-    var aA = document.getElementsByTagName('a');
+    var aA = oDiv.getElementsByTagName('a');
     var i = 0;
     for (i = 0; i < aA.length; i++) {
         aA[i].pause = 1;
@@ -31,14 +31,11 @@ window.onload = function() {
             initialize(obj);
         } else {
             obj.style.top = (obj.offsetTop - obj.ispeed) + "px";
-            console.log('offsetTop=' + obj.offsetTop)
-            console.log('ispeed=' + obj.ispeed)
         }
     }
 
     function initialize(obj) {
         var iLeft = parseInt(Math.random() * oDiv.offsetWidth);
-        var scale = Math.random() * 1 + 1;
         var iTimer = parseInt(Math.random() * 3000);
         var baseColor = 254;
         var initColor = 1;
@@ -57,7 +54,7 @@ window.onload = function() {
 
         obj.pause = 0;
 
-        obj.style.fontSize = 35 * scale + 'px';
+        obj.style.fontSize = 23 + 'px';
 
         if ((iLeft - obj.offsetWidth) > 0) {
             obj.style.left = iLeft - obj.offsetWidth + "px";

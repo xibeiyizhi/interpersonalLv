@@ -25,7 +25,7 @@
         <![endif]-->
 
     </head>
-    <body data-spy="scroll">
+    <body data-spy="scroll" onload="resize()">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -52,8 +52,8 @@
                 </div>
             </div>
         </nav>
-        <section id="contact" style="height: 100%">
-            <div class="container">
+        <section id="contact">
+            <div id="contactContainer" class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-lg-12">
@@ -228,6 +228,13 @@
                $(form).find(".jFiler-input-caption").find("span").text("请选择图片，jpg | jpeg | png | gif");
                $("#success").text("");
                $("#response_holder").text("");
+            }
+
+            function resize() {
+                let width = $("#contact").width();
+                if (width > 500) {
+                    $("#contact").height(window.innerHeight);
+                }
             }
 
         </script>

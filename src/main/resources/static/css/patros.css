@@ -294,7 +294,7 @@ figure.effect-oscar:hover img {	opacity: 0.4; }
 #meet-team ul {text-align: center;}
 #meet-team li{ display: inline-block; margin-right:24px; font-size:18px; }
 #meet-team .teamspace{ margin-top:30px; }
-#meet-team  .team-img img { filter: grayscale(1); -webkit-filter: grayscale(1); -moz-filter: grayscale(1); -o-filter: grayscale(1); -ms-filter: grayscale(1); -webkit-transition:0.8s; transition: 0.8s; }
+#meet-team  .team-img img { filter: grayscale(40%); -webkit-filter: grayscale(40%); -moz-filter: grayscale(40%); -o-filter: grayscale(40%); -ms-filter: grayscale(40%); -webkit-transition:0.8s; transition: 0.8s; }
 #meet-team  .team-img img:hover { filter: grayscale(0); -webkit-filter: grayscale(0); -moz-filter: grayscale(0); -o-filter: grayscale(0); -ms-filter: grayscale(0); -webkit-transition:0.8s; transition: 0.8s; cursor: pointer; }
  /*portfolio*/
 .port2 { margin:0px;  padding:0px;  max-width: 100%; }

@@ -76,4 +76,12 @@ public class Quotation {
     public List<String> getiSay() {
         return iSay;
     }
+
+    public static void main(String[] args) {
+        Quotation quotation = new Quotation();
+        System.out.println(String.join("|", quotation.getiSay()));
+        System.out.println(String.join("|", quotation.getSisSay()));
+        System.out.println(String.join("|", quotation.getFatherSay()));
+        System.out.println(String.join("|", quotation.getMonSay()));
+    }
 }

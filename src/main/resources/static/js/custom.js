@@ -163,7 +163,7 @@ $(document).ready(function(){
     // $('#fileInput-2').filer();
 
     $("#photo").filer({
-        limit: 10,
+        limit: 1,
         maxSize: 1,
         extensions: ['jpg', 'jpeg', 'png', 'gif'],
         changeInput: true,

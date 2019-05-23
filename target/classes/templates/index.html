@@ -16,9 +16,11 @@
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-			<![endif]-->
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&callback=initMap" async defer></script>-->
+		<!--<script src="/static/js/map.js"></script>-->
 	</head>
 
 	<body data-spy="scroll">
@@ -196,68 +198,14 @@
 				<img class="img-responsive displayed" src="/static/images/short.png" alt="about">
 				</div>
 				<div class="row teamspace">
-					<div class="col-xs-12 col-sm-6 col-md-3">
+					<div id="memTemplate" class="col-xs-12 col-sm-6 col-md-3" style="display: none">
 						<div class="team-member">
 							<div class="team-img">
 								<img class="img-responsive" src="/static/images/person1.jpg" alt="">
 							</div>
 							<div class="team-info">
-								<h3>Christian Peri</h3>
+								<a><h3>Christian Peri</h3></a>
 								<span>Co-Founder</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="/static/images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Jane Manz</h3>
-								<span>Project Manager</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="/static/images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Paulinho Rubos</h3>
-								<span>Designer</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="/static/images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Loreto Andas</h3>
-								<span>Developer</span>
 							</div>
 							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
 							<ul class="social-icons">
@@ -430,12 +378,13 @@
 		
 		<!-- Portfolio -->
 		<script src="/static/js/jquery.quicksand.js"></script>
-	
+
+		<script src="/static/js/mapCustom.js"></script>
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
-			$(document).ready(function(){
-				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
+			$(document).ready(function () {
+				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click', function (e) {
 					e.preventDefault();
 
 					var target = this.hash;
@@ -448,7 +397,7 @@
 					});
 				});
 
-				$('a.page-scroll').bind('click', function(event) {
+				$('a.page-scroll').bind('click', function (event) {
 					var $anchor = $(this);
 					$('html, body').stop().animate({
 						scrollTop: $($anchor.attr('href')).offset().top
@@ -456,309 +405,80 @@
 					event.preventDefault();
 				});
 
-			   $(".nav a").on("click", function(){
-					 $(".nav").find(".active").removeClass("active");
+				$(".nav a").on("click", function () {
+					$(".nav").find(".active").removeClass("active");
 					$(this).parent().addClass("active");
 				});
 
 				$('body').append('<div id="toTop" class="btn btn-primary color1"><span class="glyphicon glyphicon-chevron-up"></span></div>');
-					$(window).scroll(function () {
-						if ($(this).scrollTop() != 0) {
-							$('#toTop').fadeIn();
-						} else {
-							$('#toTop').fadeOut();
-						}
-					}); 
-				$('#toTop').click(function(){
-					$("html, body").animate({ scrollTop: 0 }, 700);
+				$(window).scroll(function () {
+					if ($(this).scrollTop() != 0) {
+						$('#toTop').fadeIn();
+					} else {
+						$('#toTop').fadeOut();
+					}
+				});
+				$('#toTop').click(function () {
+					$("html, body").animate({scrollTop: 0}, 700);
 					return false;
 				});
 
 			});
 
 		</script>
-
 		<script>
-		function gallery(){};
+			function gallery() {
+			};
 
-		var $itemsHolder = $('ul.port2');
-		var $itemsClone = $itemsHolder.clone(); 
-		var $filterClass = "";
-		$('ul.filter li').click(function(e) {
-		e.preventDefault();
-		$filterClass = $(this).attr('data-value');
-			if($filterClass == 'all'){ var $filters = $itemsClone.find('li'); }
-			else { var $filters = $itemsClone.find('li[data-type='+ $filterClass +']'); }
-			$itemsHolder.quicksand(
-			  $filters,
-			  { duration: 1000 },
-			  gallery
-			  );
-		});
+			var $itemsHolder = $('ul.port2');
+			var $itemsClone = $itemsHolder.clone();
+			var $filterClass = "";
+			$('ul.filter li').click(function (e) {
+				e.preventDefault();
+				$filterClass = $(this).attr('data-value');
+				if ($filterClass == 'all') {
+					var $filters = $itemsClone.find('li');
+				} else {
+					var $filters = $itemsClone.find('li[data-type=' + $filterClass + ']');
+				}
+				$itemsHolder.quicksand(
+						$filters,
+						{duration: 1000},
+						gallery
+				);
+			});
 
-		$(document).ready(gallery);
+			$(document).ready(gallery);
+		</script>
+		<script>
+			$.ajax({
+				url:"member/list",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#memTemplate");
+					let container = $(".teamspace");
+					arr.forEach(function (mem) {
+						let memNode = $(temp).clone(true);
+						memNode.attr("id",mem.mobile);
+						memNode.find("h3").text(decodeURI(mem.name));
+						memNode.find("span").text(mem.mobile + "	" + mem.email);
+						memNode.find("p").text(decodeURI(mem.message));
+						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
+						memNode.find(".team-info").find("a").attr("href","/member/detail?phone=" + mem.mobile)
+						memNode.css("display", "block");
+						container.append(memNode);
+					})
+				},
+				error:function (data) {
+					
+				}
+			})
 		</script>
 
-
-		<script type="text/javascript">
-	$(document).ready(function(){
-		
-
-		$('#contactForm').on('submit', function(e){
-			e.preventDefault();
-			e.stopPropagation();
-
-			// get values from FORM
-			var name = $("#name").val();
-			var email = $("#email").val();
-			var message = $("#message").val();
-			var goodToGo = false;
-			var messgaeError = 'Request can not be send';
-			var pattern = new RegExp(/^(('[\w-\s]+')|([\w-]+(?:\.[\w-]+)*)|('[\w-\s]+')([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-
-
-			 if (name && name.length > 0 && $.trim(name) !='' && message && message.length > 0 && $.trim(message) !='' && email && email.length > 0 && $.trim(email) !='') {
-				  if (pattern.test(email)) {
-					 goodToGo = true;
-				  } else {
-					 messgaeError = 'Please check your email address';
-					 goodToGo = false; 
-				  }
-			 } else {
-			   messgaeError = 'You must fill all the form fields to proceed!';
-			   goodToGo = false;
-			 }
-
-			 
-			if (goodToGo) {
-			   $.ajax({
-				 data: $('#contactForm').serialize(),
-				 beforeSend: function() {
-				   $('#success').html('<div class="col-md-12 text-center"><img src="/static/images/spinner1.gif" alt="spinner" /></div>');
-				 },
-				 success:function(response){
-				   if (response==1) {
-					 $('#success').html('<div class="col-md-12 text-center">邮件发送成功</div>');
-					 window.location.reload();
-				   } else {
-					 $('#success').html('<div class="col-md-12 text-center">邮件未发磅. 请重试!</div>');
-				   }
-				 },
-				 error:function(e){
-				   $('#success').html('<div class="col-md-12 text-center">无法从服务器获取数据. 请重试!</div>');
-				 },
-				 complete: function(done){
-				   console.log('Finished');
-				 },
-				 type: 'POST',
-				 url: 'js/send_email.php', 
-			   });
-			   return true;
-			} else {
-			   $('#success').html('<div class="col-md-12 text-center">'+messgaeError+'</div>');
-			   return false;
-			}
-			return false;
-		});
-	});
-
-	var map = null;
-	 var latitude;
-	 var longitude;
-	 function inicializemap(){
-	   latitude = 41.3349509; 
-	   longitude = 19.8217028;
-
-	  var egglabs = new google.maps.LatLng(latitude, longitude);
-	  var egglabs1 = new google.maps.LatLng(43.0630171, 89.2296082);
-	  var egglabs2 = new google.maps.LatLng(13.0630171, 80.2296082 );
-
-
-	  var image = new google.maps.MarkerImage('/static/images/marker.png', new google.maps.Size(84,56), new google.maps.Point(0,0), new google.maps.Point(42,56));
-	  var mapCoordinates = new google.maps.LatLng(latitude, longitude);
-	  var mapOptions = {
-	   backgroundColor: '#ffffff',
-	   zoom: 10,
-	   disableDefaultUI: true,
-	   center: mapCoordinates,
-	   mapTypeId: google.maps.MapTypeId.ROADMAP,
-	   scrollwheel: true,
-	   draggable: true, 
-	   zoomControl: false,
-	   disableDoubleClickZoom: true,
-	   mapTypeControl: false,
-	   styles: [
-					{
-						"featureType": "all",
-						"elementType": "labels.text.fill",
-						"stylers": [
-							{
-								"color": "#1f242f"
-							}
-						]
-					},
-					{
-						"featureType": "all",
-						"elementType": "labels.icon",
-						"stylers": [
-							{
-								"hue": "#ff9d00"
-							}
-						]
-					},
-					{
-						"featureType": "landscape.man_made",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"color": "#fef8ef"
-							}
-						]
-					},
-					{
-						"featureType": "poi.medical",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"hue": "#ff0000"
-							}
-						]
-					},
-					{
-						"featureType": "poi.park",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"color": "#c9d142"
-							},
-							{
-								"lightness": "0"
-							},
-							{
-								"visibility": "on"
-							},
-							{
-								"weight": "1"
-							},
-							{
-								"gamma": "1.98"
-							}
-						]
-					},
-					{
-						"featureType": "road",
-						"elementType": "geometry",
-						"stylers": [
-							{
-								"weight": "1.00"
-							}
-						]
-					},
-					{
-						"featureType": "road",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"color": "#d7b19c"
-							},
-							{
-								"weight": "1"
-							}
-						]
-					},
-					{
-						"featureType": "road.highway",
-						"elementType": "geometry",
-						"stylers": [
-							{
-								"visibility": "on"
-							}
-						]
-					},
-					{
-						"featureType": "road.highway",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"weight": "4.03"
-							}
-						]
-					},
-					{
-						"featureType": "road.highway",
-						"elementType": "geometry.stroke",
-						"stylers": [
-							{
-								"visibility": "off"
-							},
-							{
-								"color": "#ffed00"
-							}
-						]
-					},
-					{
-						"featureType": "road.highway.controlled_access",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"visibility": "on"
-							}
-						]
-					},
-					{
-						"featureType": "road.arterial",
-						"elementType": "geometry",
-						"stylers": [
-							{
-								"visibility": "on"
-							}
-						]
-					},
-					{
-						"featureType": "road.local",
-						"elementType": "geometry",
-						"stylers": [
-							{
-								"visibility": "on"
-							}
-						]
-					},
-					{
-						"featureType": "transit.line",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"color": "#cbcbcb"
-							}
-						]
-					},
-					{
-						"featureType": "water",
-						"elementType": "geometry.fill",
-						"stylers": [
-							{
-								"color": "#0b727f"
-							}
-						]
-					}
-				]
-					  };
-
-	  map = new google.maps.Map(document.getElementById('map-canvas-holder'),mapOptions);
-	  marker = new google.maps.Marker({position: egglabs, raiseOnDrag: false, icon: image, map: map, draggable: false,  title: 'ATIS1'}); 
-	  marker = new google.maps.Marker({position: egglabs1, raiseOnDrag: false, icon: image, map: map, draggable: false,  title: 'ATIS2'}); 
-	  marker = new google.maps.Marker({position: egglabs2, raiseOnDrag: false, icon: image, map: map, draggable: false,  title: 'ATIS3'}); 
-	  google.maps.event.addListener(map, 'zoom_changed', function() {
-	   var center = map.getCenter();
-	   google.maps.event.trigger(map, 'resize');
-	   map.setCenter(center);
-	  });
-	 }
-
-</script>
-
-
-</body>
+	</body>
 </html>
 
 
