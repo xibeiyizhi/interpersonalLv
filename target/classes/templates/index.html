@@ -464,9 +464,9 @@
 					let container = $(".teamspace");
 					arr.forEach(function (mem) {
 						let memNode = $(temp).clone(true);
-						memNode.attr("id",mem.mobile);
+						memNode.attr("id",mem.id);
 						memNode.find("h3").text(decodeURI(mem.name));
-						memNode.find("span").text(mem.mobile + "	" + (mem.email || ''));
+						memNode.find("span").text(mem.showMobile + "	" + (mem.email || ''));
 						memNode.find("p").text(decodeURI(mem.message));
 						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
 						memNode.find(".team-info").find("a").attr("href","/member/detail?phone=" + mem.mobile)

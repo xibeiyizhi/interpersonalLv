@@ -13,7 +13,7 @@ window.onload = function() {
             this.pause = 1;
         };
     }
-    setInterval(starmove, 150);
+    setInterval(starmove, 100);
 
     function starmove() {
         for (i = 0; i < aA.length; i++) {

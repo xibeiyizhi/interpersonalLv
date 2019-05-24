@@ -11,6 +11,7 @@ public class Member {
     private String name;
     private String profession;
     private String message;
+    private String showMobile;
     private String mobile;
     private String email;
     private String address;

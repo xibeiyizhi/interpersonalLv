@@ -81,7 +81,8 @@ public class MemberController extends BaseController {
                 Member member = JSON.parseObject(s, Member.class);
                 try {
                     member.setName(URLEncoder.encode(member.getName(), Charsets.UTF_8.name()));
-                    member.setMobile(hideNum(member.getMobile(), 3, 7));
+                    member.setShowMobile(hideNum(member.getMobile(), 3, 7));
+                    member.setMobile(member.getMobile());
                     member.setMessage(URLEncoder.encode(member.getMessage(), Charsets.UTF_8.name()));
                     if (StringUtils.isNotBlank(member.getAddress())) {
                         member.setAddress(URLEncoder.encode(member.getAddress(), Charsets.UTF_8.name()));
