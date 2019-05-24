@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,48 +21,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&callback=initMap" async defer></script>-->
-    <!--<script src="/static/js/map.js"></script>-->
-
-    <style type="text/css">
-
-        .story{
-            top: 10%;
-            width: 97%;
-            height: 80%;
-            padding: 3%;
-            position: absolute;
-            overflow: hidden;
-        }
-        .story a {
-            position: absolute;
-            color: ghostwhite;
-            text-decoration: none;
-            top: 0;
-            display: block;
-            border: gold 0 solid;
-            border-radius: 5%;
-            box-shadow: 0 0 5px dimgray;
-            -webkit-box-shadow: 0 0 5px dimgray;
-            -moz-box-shadow: 0 0 5px dimgray;
-            font-size: 20px;
-            padding: 3px 5px;
-            background: -webkit-linear-gradient(left top, red , gold); /* Safari 5.1 - 6.0 */
-            background: -o-linear-gradient(bottom right, red, gold); /* Opera 11.1 - 12.0 */
-            background: -moz-linear-gradient(bottom right, red, gold); /* Firefox 3.6 - 15 */
-            background: linear-gradient(to bottom right, red , gold); /* 标准的语法 */
-        }
-        .story a:hover {
-            filter: alpha(opacity: 100);
-            opacity: 1;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .story img{
-            width: 100px;
-        }
-    </style>
 </head>
 <body data-spy="scroll" onload="resize()">
     <!-- Navigation -->
@@ -91,17 +49,66 @@
             </div>
         </div>
     </nav>
-    <section id="clouds" class="container">
-        <div class="row">
-            <div class="story" id="cloudTag">
-                <a  href="#" th:each="tag:${tagList}" th:text="${tag}"></a>
-                <a  href="#" th:each="item:${imgList}">
-                    <img src="" th:src="@{'/' + ${item.imgName}}" th:class="${item.className}">
-                </a>
+
+    <section id="services" style="height: 100%;">
+        <div class="orangeback">
+            <div class="container" style="height: 100%;">
+                <div class="text-center homeport2"><h2>功 能</h2></div>
+                <div class="row">
+                    <div class="col-md-12 homeservices1">
+                        <div class="col-md-3 portfolio-item">
+                            <div class="text-center">
+                                <a href="/stat">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-circle fa-stack-2x"></i>
+									  <i class="fa fa-line-chart fa-stack-1x"></i>
+									</span>
+                                </a>
+                                <h3><a href="/stat">统计总览</a></h3>
+                                <p>展示本站当前资源的使用情况，注意每一种资源都回响着小钱钱的声音，提醒自己珍惜。持续扩展中，敬请期待.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 portfolio-item">
+                            <div class="text-center">
+                                <a href="/welcome">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-circle fa-stack-2x"></i>
+									  <i class="fa fa-users fa-stack-1x"></i>
+									</span>
+                                </a>
+                                <h3><a href="/welcome">欢迎加入</a></h3>
+                                <p>每位亲友都可以在这里展示自己的最新动态，发表文章或上传照片.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 portfolio-item">
+                            <div class="text-center">
+                                <a href="/lab">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-circle fa-stack-2x"></i>
+									  <i class="fa fa-code fa-stack-1x"></i>
+									</span>
+                                </a>
+                                <h3><a href="/lab">实验室</a></h3>
+                                <p>试验一些感兴趣的技术和想法，若有成果将在此处展示.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 portfolio-item">
+                            <div class="text-center">
+                                <a href="/future">
+									<span class="fa-stack fa-lg">
+									  <i class="fa fa-circle fa-stack-2x"></i>
+									  <i class="fa fa-cogs fa-stack-1x"></i>
+									</span>
+                                </a>
+                                <h3><a href="/future">网站建设</a></h3>
+                                <p>不定期对本网站进行优化和升级，敬请期待.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
     <footer id="footer">
         <div class="container">
             <div class="row myfooter">
@@ -121,13 +128,15 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script>
         function resize() {
-            let navHeight = $(".navbar").height();
-            $(".story").css("top", navHeight + 33);
-            $(".story").height(window.innerHeight - navHeight - window.innerHeight * 0.1);
-            $("#clouds").height(window.innerHeight);
+            let width = $("#services").width();
+            if (width < 767) {
+                let height = $(".orangeback").height();
+                $("#services").height(height);
+            } else {
+                $(".orangeback").height($("#services").height());
+            }
         }
-        resize();
+
     </script>
-    <script src="/static/js/cloudTag.js"></script>
 </body>
 </html>

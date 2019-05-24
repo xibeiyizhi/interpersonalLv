@@ -129,7 +129,7 @@
 						if(!n.limit || (n.limit && n.limit >= 2)) {
 							s.attr("multiple", "multiple");
 							s.attr("name")
-								.slice(-2) != "[]" ? s.attr("name", s.attr("name") + "[]") : null;
+								.slice(-3) != "Arr" ? s.attr("name", s.attr("name") + "Arr") : null;
 						}
 						f._bindInput();
 						if(n.files) {
@@ -725,9 +725,9 @@
 									val = [];
 								if(input.size() == 0) {
 									input = $('<input type="hidden" name="jfiler-items-exclude-' + (n.excludeName ? n.excludeName : (s.attr("name")
-										.slice(-2) != "[]" ? s.attr("name") : s.attr("name")
+										.slice(-3) != "Arr" ? s.attr("name") : s.attr("name")
 										.substring(0, s.attr("name")
-											.length - 2)) + "-" + t) + '">');
+											.length - 3)) + "-" + t) + '">');
 									input.appendTo(p);
 								}
 								if(item.file._choosed || item.file._appended || item.uploaded) {

@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(value = "/statistics")
-public class DataController extends BaseController{
+public class StatController extends BaseController{
 
     @RequestMapping(value = "/cpu", method = RequestMethod.GET)
     public String cpu() throws Exception {

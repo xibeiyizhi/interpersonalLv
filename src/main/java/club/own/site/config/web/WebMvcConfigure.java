@@ -4,10 +4,7 @@ package club.own.site.config.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +12,7 @@ import java.util.List;
  * Created by shenchangxing on 2018/9/26.
  */
 @Configuration
-public class WebMvcConfigure extends WebMvcConfigurerAdapter {
+public class WebMvcConfigure extends WebMvcConfigurationSupport {
 
 
     @Override

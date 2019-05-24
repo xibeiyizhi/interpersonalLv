@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
 import java.lang.reflect.Field;
@@ -15,6 +17,22 @@ import java.util.Set;
 @Slf4j
 @Controller
 public class BaseController {
+
+    Map<String, String> parseRequestParam(Map<String, String[]> parameterMap) {
+        Map<String, String> res = Maps.newHashMap();
+        if(MapUtils.isNotEmpty(parameterMap)) {
+            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                String key = entry.getKey();
+                String[] values = entry.getValue();
+                for (String value : values) {
+                    if (StringUtils.isNotBlank(value)) {
+                        res.put(key, value);
+                    }
+                }
+            }
+        }
+        return res;
+    }
 
     public <T> String toEChartsBarData(T t) {
         List<String> nameArr = Lists.newArrayList();
@@ -30,7 +48,7 @@ public class BaseController {
                 }
             }
         } else if(t instanceof Collection) {
-
+            log.info("toEChartsBarData t is a collection");
         } else {
             Field[] fields = t.getClass().getDeclaredFields();
             for (Field field: fields) {
@@ -64,7 +82,7 @@ public class BaseController {
                 }
             }
         } else if(t instanceof Collection) {
-
+            log.info("toEChartsBarData t is a collection");
         } else {
             Field[] fields = t.getClass().getDeclaredFields();
             for (Field field: fields) {

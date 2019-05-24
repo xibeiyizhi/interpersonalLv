@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>PATROS</title>
+        <title>WALKER</title>
+        <link rel="icon" href="/static/img/index/shortcut.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/static/img/index/shortcut.png" type="image/x-icon" />
         <!-- Bootstrap Core CSS -->
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom Fonts -->
@@ -23,40 +25,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <!-- jQuery -->
-        <script src="/static/js/jquery.js" type="text/javascript"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            function switchMoreInput(obj) {
-                if (obj.innerText === 'more') {
-                    obj.innerText = 'hide';
-                    document.getElementById('moreInput').style.display = 'block';
-                } else {
-                    obj.innerText = 'more';
-                    document.getElementById('moreInput').style.display = 'none';
-                }
-            }
-            function submitForm() {
-                $.ajax({
-                    url:'/member/add',
-                    type:'POST',
-                    data: $("#addMemForm").serialize(),
-                    success: function (data) {
-                        $("#resultMsg").text(data);
-                    },
-                    error: function (data) {
 
-                    }
-                });
-            }
-
-            function clearFrom() {
-                alert(2)
-            }
-        </script>
     </head>
-    <body data-spy="scroll">
+    <body data-spy="scroll" onload="resize()">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -72,8 +43,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right custom-menu">
                         <li class="active"><a href="/index#home">主页</a></li>
-                        <li><a href="/index#about">关于</a></li>
-                        <li><a href="/index#services">功能</a></li>
+                        <li><a href="/index#bloghome">新闻</a></li>
+                        <li><a href="/services">功能</a></li>
                         <li><a href="/index#meet-team">亲友</a></li>
                         <li><a href="/index#portfolio1">作品</a></li>
                         <li><a href="/index#contact">找我</a></li>
@@ -84,7 +55,7 @@
             </div>
         </nav>
         <section id="contact">
-            <div class="container">
+            <div id="contactContainer" class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-lg-12">
@@ -93,17 +64,17 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-8">
-                            <form id="addMemForm" method="post" enctype="multipart/form-data">
+                            <form id="addMemForm" enctype="multipart/form-data" method="post">
                                 <div class="row">
                                     <div class="col-sm-6 height-contact-element">
                                         <div class="form-group">
-                                            <input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="姓 名" required data-validation-required-message="请输入您的姓名!"/>
+                                            <input type="text" name="name" class="form-control custom-labels" id="name" placeholder="姓 名" required data-validation-required-message="请输入您的姓名!"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 height-contact-element">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control custom-labels" id="profession" placeholder="职 业" required data-validation-required-message="请输入您的职业!"/>
+                                            <input type="tel" name="mobile" class="form-control custom-labels" id="mobile" placeholder="手 机" required data-validation-required-message="请输入您的手机!"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
@@ -114,7 +85,7 @@
                                     </div>
                                     <div class="col-sm-12 height-contact-element">
                                         <div class="form-group">
-                                            <input type="file" name="photo" class="form-control custom-labels" id="fileInput-3" placeholder="画 像" required data-validation-required-message="请上传您的美照吧!"/>
+                                            <input type="file" name="photo" class="form-control custom-labels" id="photo" placeholder="画 像" required data-validation-required-message="请上传您的美照吧!"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 height-contact-element">
@@ -123,38 +94,36 @@
                                     <div id="moreInput" style="display:none">
                                         <div class="col-sm-6 height-contact-element">
                                             <div class="form-group">
-                                                <input type="text" name="message" class="form-control custom-labels" id="mobile" placeholder="手 机" />
+                                                <input type="text" name="profession" class="form-control custom-labels" id="profession" placeholder="职 业"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 height-contact-element">
                                             <div class="form-group">
-                                                <input type="text" name="message" class="form-control custom-labels" id="email" placeholder="邮 箱"/>
+                                                <input type="email" name="email" class="form-control custom-labels" id="email" placeholder="邮 箱"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 height-contact-element">
                                             <div class="form-group">
-                                                <input type="text" name="message" class="form-control custom-labels" id="address" placeholder="地 址"/>
+                                                <input type="text" name="address" class="form-control custom-labels" id="address" placeholder="地 址"/>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="col-sm-3 col-xs-6 height-contact-element">
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-md btn-custom btn-noborder-radius" name="submit" value="添加" onclick="return submitForm();"/>
+                                            <button type="button" class="btn btn-md btn-custom btn-noborder-radius" name="submit" onclick="return submitForm();">添加</button>
                                         </div>
                                     </div>
                                     <div class="col-sm-3 col-xs-6 height-contact-element">
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset" onclick="return clearFrom()">清除</button>
+                                            <button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset" onclick="return clearForm();">清除</button>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-12 contact-msg">
-                                        <div id="success"></div>
                                     </div>
                                     <div class="col-sm-3 col-xs-6 height-contact-element">
-                                        <div class="form-group">
-                                            <div id="response_holder"></div>
-                                        </div>
+                                        <div id="success" class="text-center color-elements" style="height: 35px"></div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6 height-contact-element">
+                                        <div id="response_holder" class="text-center color-elements" style="height: 35px"></div>
                                     </div>
                                 </div>
                             </form>
@@ -175,9 +144,101 @@
                 </div>
             </div>
         </footer>
+
+        <!-- jQuery -->
+        <script src="/static/js/jquery-2.1.1.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+
         <script src="/static/js/jquery.filer.js" type="text/javascript"></script>
         <script src="/static/js/prettify.js" type="text/javascript"></script>
         <script src="/static/js/scripts.js" type="text/javascript"></script>
         <script src="/static/js/custom.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function switchMoreInput(obj) {
+                if (obj.innerText === 'more') {
+                    obj.innerText = 'hide';
+                    document.getElementById('moreInput').style.display = 'block';
+                } else {
+                    obj.innerText = 'more';
+                    document.getElementById('moreInput').style.display = 'none';
+                }
+            }
+
+            function showErrTip(obj) {
+                let holder = $("#response_holder");
+                holder.fadeIn();
+                holder.text(obj.attr("data-validation-required-message"));
+                holder.fadeOut(3000);
+            }
+
+            function submitForm() {
+                let nameObj = $('#name');
+                if (!nameObj.val()) {
+                    showErrTip(nameObj);
+                    return;
+                }
+                let mobileObj = $('#mobile');
+                if (!mobileObj.val()) {
+                    showErrTip(mobileObj);
+                    return;
+                }
+                let msgObj = $('#message');
+                if (!msgObj.val()) {
+                    showErrTip(msgObj);
+                    return;
+                }
+                let photoObj = $('#photo');
+                if (!photoObj.val()) {
+                    showErrTip(photoObj);
+                    return;
+                }
+                let formData = new FormData(document.getElementById('addMemForm'));
+                $.ajax({
+                    url:'member/add',
+                    type:'post',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data === "OK") {
+                            $("#success").text(data);
+                            setTimeout("clearForm()", 5000);
+                        } else {
+                            $("#response_holder").text(data);
+                        }
+                    },
+                    error: function (data) {
+                        $("#response_holder").text(data);
+                    }
+                });
+            }
+
+            function clearForm() {
+               var form = document.getElementById('addMemForm')
+               var nodes = $(form).find("input");
+               for( var i=0; i< nodes.length; i++) {
+                   var node = nodes[i];
+                   $(node).val("");
+               }
+               var filer = $(form).find(".jFiler");
+               var filerItems = $(form).find(".jFiler-items");
+               if (filerItems != null &&　filerItems.get(0) != null) {
+                   filer.get(0).removeChild(filerItems.get(0));
+               }
+               $(form).find(".jFiler-input-caption").find("span").text("请选择图片，jpg | jpeg | png | gif");
+               $("#success").text("");
+               $("#response_holder").text("");
+            }
+
+            function resize() {
+                let width = $("#contact").width();
+                if (width > 500) {
+                    $("#contact").height(window.innerHeight);
+                }
+            }
+
+        </script>
     </body>
 </html>
