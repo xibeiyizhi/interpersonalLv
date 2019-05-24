@@ -112,6 +112,7 @@ public class MemberController extends BaseController {
             }
         }
         String tags = redisClient.hget(MEMBER_TAGS_KEY, phone);
+        tags = StringUtils.isNotBlank(tags) ? tags : "";
         String regex = "\\|";
         tagList = Lists.newArrayList(tags.split(regex));
 

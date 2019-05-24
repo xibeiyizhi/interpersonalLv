@@ -120,10 +120,9 @@
     <script>
         function resize() {
             let navHeight = $(".navbar").height();
-            let footHeight = $("#footer").height();
             $(".story").css("top", navHeight + 33);
-            $(".story").height(window.innerHeight  - footHeight - navHeight - window.innerHeight * 0.1);
-            $("#clouds").height(window.innerHeight  - footHeight);
+            $(".story").height(window.innerHeight - navHeight - window.innerHeight * 0.1);
+            $("#clouds").height(window.innerHeight);
         }
         resize();
     </script>

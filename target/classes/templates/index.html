@@ -7,6 +7,8 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>PATROS</title>
+		<link rel="icon" href="Images/wangyi.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="Images/wangyi.ico" type="image/x-icon" />
 		<!-- Bootstrap Core CSS -->
 		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom Fonts -->
@@ -464,7 +466,7 @@
 						let memNode = $(temp).clone(true);
 						memNode.attr("id",mem.mobile);
 						memNode.find("h3").text(decodeURI(mem.name));
-						memNode.find("span").text(mem.mobile + "	" + mem.email);
+						memNode.find("span").text(mem.mobile + "	" + (mem.email || ''));
 						memNode.find("p").text(decodeURI(mem.message));
 						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
 						memNode.find(".team-info").find("a").attr("href","/member/detail?phone=" + mem.mobile)

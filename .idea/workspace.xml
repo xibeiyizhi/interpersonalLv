@@ -2,70 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6156ea3e-3453-4350-9a44-8697c776e90b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/club/own/site/utils/FileUploadUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/welcome/微信图片_20190523125607.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/contactFormValid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/mapCustom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/bean/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/bean/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/bean/Quotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/bean/Quotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/controller/IndexController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/index/51miz-E825965-AACB0642.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/detail/htmleaf-demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/detail/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/detail/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/patros.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/patros.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/daughter9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15513796739/daughter9.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/father9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/18635416472/father9.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/mother9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother9.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/detail/son9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/img/detail/13488788682/9.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -101,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/IndexController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
+            <state relative-caret-position="311">
               <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
             </state>
           </provider>
@@ -110,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/utils/FileUploadUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-98">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="86">
+              <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#563#564#0" expanded="true" />
@@ -133,17 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="128" column="13" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="68" column="54" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
+            <state relative-caret-position="420">
+              <caret line="123" column="90" lean-forward="true" selection-start-line="123" selection-start-column="90" selection-end-line="123" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -151,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+            <state relative-caret-position="259">
+              <caret line="116" column="56" lean-forward="true" selection-start-line="116" selection-start-column="56" selection-end-line="116" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,11 +91,45 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/bean/Member.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="323">
+              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="10" column="57" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -199,7 +164,6 @@
       <find>addMemForm</find>
       <find>data-validation-required-message</find>
       <find>remove</find>
-      <find>favicon.ico</find>
       <find>请填写此字段</find>
       <find>请</find>
       <find>validate</find>
@@ -213,6 +177,7 @@
       <find>#meet-team  .team-img img</find>
       <find>container</find>
       <find>body</find>
+      <find>favicon.ico</find>
     </findStrings>
     <replaceStrings>
       <replace>/static/img/detail</replace>
@@ -271,7 +236,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/css/patros.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/custom.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/welcome.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/club/own/site/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java" />
         <option value="$PROJECT_DIR$/src/main/java/club/own/site/bean/Quotation.java" />
@@ -279,10 +243,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/css/detail/htmleaf-demo.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/detail/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/detail.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" />
         <option value="$PROJECT_DIR$/src/main/java/club/own/site/utils/FileUploadUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/detail.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" />
       </list>
     </option>
   </component>
@@ -449,7 +414,15 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="interpersonalLv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="interpersonalLv" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="interpersonalLv" type="b2602c69:ProjectViewProjectNode" />
@@ -476,7 +449,7 @@
     <property name="ToolWindowStructure.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558612995938" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558671690993" />
     <property name="js.last.introduce.type" value="CONST" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -485,7 +458,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -500,11 +473,11 @@
       <recent name="club.own.site.config.web" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\interpersonalLv\src\main\resources\static\img\index" />
       <recent name="E:\workspace\interpersonalLv\src\main\resources\static\img\welcome" />
       <recent name="E:\workspace\interpersonalLv\src\main\resources\static\img\detail\13488788682" />
       <recent name="E:\workspace\interpersonalLv\target\classes\static\img\welcome" />
       <recent name="E:\workspace\interpersonalLv\src\main\resources\static\images" />
-      <recent name="E:\workspace\interpersonalLv\src\main\java\club\own\site\config\redis" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -519,7 +492,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.LvApplication">
+  <component name="RunManager" selected="Application.Quotation">
     <configuration name="Quotation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="club.own.site.bean.Quotation" />
       <module name="interpersonalLv" />
@@ -582,15 +555,16 @@
       <workItem from="1558072674230" duration="17775000" />
       <workItem from="1558091216919" duration="176000" />
       <workItem from="1558319243755" duration="27144000" />
-      <workItem from="1558401967303" duration="61987000" />
+      <workItem from="1558401967303" duration="70178000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298637000" />
+    <option name="totallyTimeSpent" value="306828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" show_stripe_button="false" side_tool="true" weight="0.24964234" />
       <window_info id="Designer" order="1" />
@@ -602,8 +576,8 @@
       <window_info auto_hide="true" x="306" y="309" width="413" height="877" id="Project" internal_type="SLIDING" order="7" type="SLIDING" weight="0.2639485" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49624464" visible="true" weight="0.20666666" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6362661" weight="0.2988889" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49624464" weight="0.20666666" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6362661" visible="true" weight="0.2988889" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -632,6 +606,16 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
         <watch expression="tags.split(&quot;\\|&quot;)" language="JAVA" />
@@ -692,26 +676,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/LvApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#417#418#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/config/redis/RedisConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/building.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -739,9 +703,6 @@
           <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/short.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/short_white.png">
       <provider selected="true" editor-type-id="images" />
@@ -937,23 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="46" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/bean/Member.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/static/img/detail/13488788682/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -961,17 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4289">
-          <caret line="375" column="59" lean-forward="true" selection-start-line="372" selection-start-column="8" selection-end-line="375" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1014,20 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="128" column="13" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" column="54" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.6.RELEASE/spring-beans-5.1.6.RELEASE.jar!/org/springframework/beans/factory/annotation/Value.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1037,27 +956,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/IndexController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
+        <state relative-caret-position="311">
           <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/utils/FileUploadUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-98">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/detail/15525137032/mother1.jpg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/bean/Member.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1066,8 +976,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="323">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/utils/FileUploadUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/2.1.4.RELEASE/spring-boot-2.1.4.RELEASE.jar!/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/short.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/cloudTag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" column="54" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="116" column="56" lean-forward="true" selection-start-line="116" selection-start-column="56" selection-end-line="116" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="123" column="90" lean-forward="true" selection-start-line="123" selection-start-column="90" selection-end-line="123" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
