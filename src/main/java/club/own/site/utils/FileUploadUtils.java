@@ -32,6 +32,16 @@ public class FileUploadUtils {
         return basePath;
     }
 
+    public static String getFileType(String fileName) {
+        String type = "";
+        if (StringUtils.isNotBlank(fileName)) {
+            if (fileName.lastIndexOf(".") > 0) {
+                type = fileName.substring(fileName.lastIndexOf("."));
+            }
+        }
+        return type;
+    }
+
     public static boolean uploadFile(MultipartFile file, String dirPath, String fileName) {
         BufferedOutputStream stream = null;
         try {
@@ -61,5 +71,9 @@ public class FileUploadUtils {
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getFileType("abc.jpg"));
     }
 }

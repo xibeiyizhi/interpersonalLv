@@ -31,6 +31,7 @@ import java.util.Map;
 import static club.own.site.constant.ProjectConstant.MEMBER_LIST_KEY;
 import static club.own.site.constant.ProjectConstant.MEMBER_TAGS_KEY;
 import static club.own.site.utils.FileUploadUtils.getBasePath;
+import static club.own.site.utils.FileUploadUtils.getFileType;
 
 @Slf4j
 @Controller
@@ -48,12 +49,14 @@ public class MemberController extends BaseController {
                 if (file == null || file.isEmpty()) {
                     continue;
                 }
-                String fileUrl = relativePath + file.getOriginalFilename();
+                String photoType = getFileType(file.getOriginalFilename());
+                String fileName = member.getMobile() + photoType;
+                String fileUrl = relativePath + fileName;
                 if (StringUtils.isBlank(member.getFirstImgUrl())){
                     member.setFirstImgUrl(fileUrl);
                 }
                 String dirPath = getBasePath() + relativePath;
-                FileUploadUtils.uploadFile(file, dirPath, file.getOriginalFilename());
+                FileUploadUtils.uploadFile(file, dirPath, fileName);
             }
             if(member != null && StringUtils.isNotBlank(member.getMobile())) {
                 try{
