@@ -32,6 +32,7 @@ import static club.own.site.constant.ProjectConstant.MEMBER_LIST_KEY;
 import static club.own.site.constant.ProjectConstant.MEMBER_TAGS_KEY;
 import static club.own.site.utils.FileUploadUtils.getBasePath;
 import static club.own.site.utils.FileUploadUtils.getFileType;
+import static club.own.site.utils.NumberUtils.hideNum;
 
 @Slf4j
 @Controller
@@ -80,6 +81,7 @@ public class MemberController extends BaseController {
                 Member member = JSON.parseObject(s, Member.class);
                 try {
                     member.setName(URLEncoder.encode(member.getName(), Charsets.UTF_8.name()));
+                    member.setMobile(hideNum(member.getMobile(), 3, 7));
                     member.setMessage(URLEncoder.encode(member.getMessage(), Charsets.UTF_8.name()));
                     if (StringUtils.isNotBlank(member.getAddress())) {
                         member.setAddress(URLEncoder.encode(member.getAddress(), Charsets.UTF_8.name()));
