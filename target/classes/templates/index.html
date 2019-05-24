@@ -41,7 +41,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right custom-menu">
 						<li class="active"><a href="#home">主页</a></li>
-						<li><a href="/index#about">关于</a></li>
+						<li><a href="/index#bloghome">新闻</a></li>
 						<li><a href="/services">功能</a></li>
 						<li><a href="/index#meet-team">亲友</a></li>
 						<li><a href="/index#portfolio1">作品</a></li>
@@ -155,38 +155,16 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12 homeport1">
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
+						<div id="blogTemplate" class="col-md-4 col-sm-12 col-xs-12 portfolio-item" style="display: none">
 							<figure class="effect-oscar">
 								<img src="/static/images/blog1.jpg" alt="img09" class="img-responsive" />
 								<figcaption>
 									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
+									<a href="#" name="viewMore">全部新闻</a>
 								</figcaption>           
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
-							<figure class="effect-oscar">
-								<img src="/static/images/blog2.jpg" alt="img09" class="img-responsive"/>
-								<figcaption>
-									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
-								</figcaption>           
-							</figure>
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
-							<figure class="effect-oscar">
-								<img src="/static/images/blog3.jpg" alt="img09" class="img-responsive"/>
-								<figcaption>
-									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
-								</figcaption>           
-							</figure>
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
+							<div class="text-center"><a name="readMore" class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">阅读全部</a></div>
 						</div>
 					</div>
 				</div>
@@ -261,8 +239,6 @@
 		  </div> 
 		</div>
 		</section>
-
-		
 
 		<section id="contact">
 			<div class="container"> 
@@ -469,7 +445,7 @@
 						memNode.find("span").text(mem.showMobile + "	" + (mem.email || ''));
 						memNode.find("p").text(decodeURI(mem.message));
 						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
-						memNode.find(".team-info").find("a").attr("href","/member/detail?phone=" + mem.mobile)
+						memNode.find("#viewMore").attr("href","/member/detail?phone=" + mem.mobile)
 						memNode.css("display", "block");
 						container.append(memNode);
 					})
@@ -479,7 +455,33 @@
 				}
 			})
 		</script>
+		<script>
+			$.ajax({
+				url:"blog/list",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#blogTemplate");
+					let container = $("#bloghome").find(".homeport1");
+					arr.forEach(function (blog) {
+						let blogNode = $(temp).clone(true);
+						blogNode.attr("id",blog.id);
+						blogNode.find("h2").text(decodeURI(blog.title));
+						blogNode.find("p").text(decodeURI(blog.content));
+						blogNode.find("img").attr("src", decodeURIComponent(decodeURI(blog.firstImgUrl)));
+						blogNode.find("a[name='viewMore']").attr("href","/blog");
+						blogNode.find("a[name='readMore']").attr("href","/singlepost?id="+ blog.id);
+						blogNode.css("display", "block");
+						container.append(blogNode);
+					})
+				},
+				error:function (data) {
 
+				}
+			})
+		</script>
 	</body>
 </html>
 

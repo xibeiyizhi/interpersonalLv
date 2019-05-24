@@ -13,7 +13,7 @@ window.onload = function() {
             this.pause = 1;
         };
     }
-    setInterval(starmove, 100);
+    setInterval(starmove, 30);
 
     function starmove() {
         for (i = 0; i < aA.length; i++) {
@@ -66,6 +66,6 @@ window.onload = function() {
         obj.time = setTimeout(function() {
             obj.pause = 1;
         }, iTimer);
-        obj.ispeed = Math.ceil(Math.random() * 5) + 1;
+        obj.ispeed = Math.ceil(Math.random() * 3) + 1;
     }
 };

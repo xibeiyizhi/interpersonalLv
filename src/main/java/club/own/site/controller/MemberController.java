@@ -79,28 +79,14 @@ public class MemberController extends BaseController {
         values.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 Member member = JSON.parseObject(s, Member.class);
-                try {
-                    member.setName(URLEncoder.encode(member.getName(), Charsets.UTF_8.name()));
-                    member.setShowMobile(hideNum(member.getMobile(), 3, 7));
-                    member.setMobile(member.getMobile());
-                    member.setMessage(URLEncoder.encode(member.getMessage(), Charsets.UTF_8.name()));
-                    if (StringUtils.isNotBlank(member.getAddress())) {
-                        member.setAddress(URLEncoder.encode(member.getAddress(), Charsets.UTF_8.name()));
-                    }
-                    if (StringUtils.isNotBlank(member.getProfession())) {
-                        member.setProfession(URLEncoder.encode(member.getProfession(), Charsets.UTF_8.name()));
-                    }
-                    if (StringUtils.isNotBlank(member.getFirstImgUrl())) {
-                        member.setFirstImgUrl(URLEncoder.encode(member.getFirstImgUrl(), Charsets.UTF_8.name()));
-                    }
-                } catch (UnsupportedEncodingException e) {
-                    log.error("URLEncoder.encode error", e);
-                }
+                member.setShowMobile(hideNum(member.getMobile(), 3, 7));
                 res.add(member);
             }
         });
         res.sort(Comparator.comparing(Member::getId).reversed());
-        return JSON.toJSONString(res);
+        // 最多显示4个
+        List<Member> subRes = res.subList(0, Math.min(4, res.size()));
+        return JSON.toJSONString(subRes);
     }
 
     @GetMapping(value = "member/detail")
