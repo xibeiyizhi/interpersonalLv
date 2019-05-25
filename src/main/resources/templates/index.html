@@ -445,7 +445,7 @@
 						memNode.find("span").text(mem.showMobile + "	" + (mem.email || ''));
 						memNode.find("p").text(decodeURI(mem.message));
 						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
-						memNode.find("#viewMore").attr("href","/member/detail?phone=" + mem.mobile)
+						memNode.find("a").attr("href","/member/detail?phone=" + mem.mobile)
 						memNode.css("display", "block");
 						container.append(memNode);
 					})

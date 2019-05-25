@@ -3,6 +3,7 @@ package club.own.site.controller;
 import club.own.site.bean.BlogItem;
 import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
+import club.own.site.utils.EncodeUtils;
 import club.own.site.utils.FileUploadUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
@@ -41,6 +42,7 @@ public class BlogController extends BaseController {
         values.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
+                EncodeUtils.encode(blogItem);
                 blogItems.add(blogItem);
             }
         });

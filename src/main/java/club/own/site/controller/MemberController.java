@@ -3,6 +3,7 @@ package club.own.site.controller;
 import club.own.site.bean.Img;
 import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
+import club.own.site.utils.EncodeUtils;
 import club.own.site.utils.FileUploadUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Charsets;
@@ -43,7 +44,7 @@ public class MemberController extends BaseController {
 
     @PostMapping(value = "member/add")
     public @ResponseBody String add(Member member, HttpServletRequest request){
-        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("photoArr");
+        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("photo");
         String relativePath = "static/img/welcome/";
         if (CollectionUtils.isNotEmpty(files)) {
             for (MultipartFile file : files) {
@@ -79,6 +80,7 @@ public class MemberController extends BaseController {
         values.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 Member member = JSON.parseObject(s, Member.class);
+                EncodeUtils.encode(member);
                 member.setShowMobile(hideNum(member.getMobile(), 3, 7));
                 res.add(member);
             }
