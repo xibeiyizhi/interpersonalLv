@@ -160,7 +160,7 @@
 								<img src="/static/images/blog1.jpg" alt="img09" class="img-responsive" />
 								<figcaption>
 									<h2>Blog Post Long Title</h2>
-									<a href="#" name="viewMore">全部新闻</a>
+									<a href="javascript:;" name="viewMore">全部新闻</a>
 								</figcaption>           
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
@@ -473,6 +473,14 @@
 						blogNode.find("img").attr("src", decodeURIComponent(decodeURI(blog.firstImgUrl)));
 						blogNode.find("a[name='viewMore']").attr("href","/blog");
 						blogNode.find("a[name='readMore']").attr("href","/singlepost?id="+ blog.id);
+						blogNode.on('touchstart', function () {
+							blogNode.find("figure").removeClass("effect-oscar");
+							blogNode.find("figure").addClass("effect-oscar-active");
+						});
+						blogNode.on('touchend', function () {
+							blogNode.find("figure").removeClass("effect-oscar-active");
+							blogNode.find("figure").addClass("effect-oscar");
+						});
 						blogNode.css("display", "block");
 						container.append(blogNode);
 					})
