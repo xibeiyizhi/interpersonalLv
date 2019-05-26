@@ -203,14 +203,14 @@
                     contentType: false,
                     success: function (data) {
                         if (data === "OK") {
-                            $("#success").text(data);
+                            $("#success").text(decodeURI(data));
                             setTimeout("clearForm()", 5000);
                         } else {
-                            $("#response_holder").text(data);
+                            $("#response_holder").text(decodeURI(data));
                         }
                     },
                     error: function (data) {
-                        $("#response_holder").text(data);
+                        $("#response_holder").text(decodeURI(data));
                     }
                 });
             }

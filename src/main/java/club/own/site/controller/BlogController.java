@@ -42,7 +42,7 @@ public class BlogController extends BaseController {
         values.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
-                EncodeUtils.encode(blogItem);
+                EncodeUtils.encodeObj(blogItem);
                 blogItems.add(blogItem);
             }
         });
