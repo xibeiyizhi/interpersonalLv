@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +7,14 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>WALKER</title>
-		<link rel="icon" href="/static/img/index/shortcut.png" type="image/x-icon" />
-		<link rel="shortcut icon" href="/static/img/index/shortcut.png" type="image/x-icon" />
+		<link rel="icon" href="#" th:href="@{'/static/img/index/shortcut.png?version=' + ${version}}" type="image/x-icon" />
+		<link rel="shortcut icon" href="#" th:href="@{'/static/img/index/shortcut.png?version=' + ${version}}" type="image/x-icon" />
 		<!-- Bootstrap Core CSS -->
 		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom Fonts -->
 		<link href="/static/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="/static/css/patros.css" >
+		<link rel="stylesheet" href="#" th:href="@{'/static/css/patros.css?version=' + ${version}}" >
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -23,6 +23,7 @@
 		<![endif]-->
 		<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&callback=initMap" async defer></script>-->
 		<!--<script src="/static/js/map.js"></script>-->
+		<script src="#" th:src="@{'/static/js/version.js?version=' + ${version}}" ></script>
 	</head>
 
 	<body data-spy="scroll">
@@ -444,7 +445,7 @@
 						memNode.find("h3").text(decodeURI(mem.name));
 						memNode.find("span").text(mem.showMobile + "	" + (mem.email || ''));
 						memNode.find("p").text(decodeURI(mem.message));
-						memNode.find("img").attr("src", decodeURIComponent(decodeURI(mem.firstImgUrl)));
+						memNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(mem.firstImgUrl))));
 						memNode.find("a").attr("href","/member/detail?phone=" + mem.mobile)
 						memNode.css("display", "block");
 						container.append(memNode);
@@ -470,7 +471,7 @@
 						blogNode.attr("id",blog.id);
 						blogNode.find("h2").text(decodeURI(blog.title));
 						blogNode.find("p").text(decodeURI(blog.content));
-						blogNode.find("img").attr("src", decodeURIComponent(decodeURI(blog.firstImgUrl)));
+						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
 						blogNode.find("a[name='viewMore']").attr("href","/blog");
 						blogNode.find("a[name='readMore']").attr("href","/singlepost?id="+ blog.id);
 						blogNode.on('touchstart', function () {

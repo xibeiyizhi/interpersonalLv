@@ -27,6 +27,7 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("version", System.currentTimeMillis());
         mav.setViewName("index");
         return mav;
     }
