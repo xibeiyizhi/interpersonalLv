@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37c7f78c-bba7-46ad-b6a8-de396858865a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/club/own/site/bean/Apply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/switchStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/logo_default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/switchBg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/showJson.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/club/own/site/utils/EncodeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/club/own/site/utils/EncodeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
-    </list>
+    <list default="true" id="37c7f78c-bba7-46ad-b6a8-de396858865a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1212">
-              <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
+              <caret line="211" column="44" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -64,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="59" column="23" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
+            <state relative-caret-position="334">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
         </entry>
@@ -74,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/bean/Apply.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -82,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/apply.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="131" column="39" lean-forward="true" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+            <state relative-caret-position="174">
+              <caret line="135" column="33" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -96,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/showJson.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -105,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/switchStyle.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
-              <caret line="71" column="1" lean-forward="true" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+              <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -114,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -211,11 +197,6 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="interpersonal-lv" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="interpersonal-lv" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
         </path>
       </expand>
       <select />
@@ -448,16 +429,15 @@
       <workItem from="1558794815600" duration="1434000" />
       <workItem from="1558833304312" duration="7134000" />
       <workItem from="1558841581890" duration="28000" />
-      <workItem from="1558841716260" duration="14847000" />
+      <workItem from="1558841716260" duration="15538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40751000" />
+    <option name="totallyTimeSpent" value="41442000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27106228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -470,7 +450,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -485,7 +465,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32967034" />
+      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.32967034" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -498,16 +478,6 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="value.trim()" language="JAVA" />
@@ -781,7 +751,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/constant/ProjectConstant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -808,7 +778,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/switchStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
-          <caret line="71" column="1" lean-forward="true" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+          <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -827,28 +797,28 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/showJson.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1212">
-          <caret line="211" column="44" lean-forward="true" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
+          <caret line="211" column="44" selection-start-line="211" selection-start-column="44" selection-end-line="211" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/bean/Apply.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/apply.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="131" column="39" lean-forward="true" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+        <state relative-caret-position="174">
+          <caret line="135" column="33" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -858,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/club/own/site/controller/MemberController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="59" column="23" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
+        <state relative-caret-position="334">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>
