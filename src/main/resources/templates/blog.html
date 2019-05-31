@@ -1,5 +1,5 @@
-	<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="utf-8">
@@ -24,10 +24,21 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<!-- jQuery -->
+		<script src="/static/js/jquery-2.1.1.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script>
+			function addTouchClass(o) {
+				$(o).addClass("blog-thumb_active");
+			}
+			function removeTouchClass(o) {
+				$(o).removeClass("blog-thumb_active");
+			}
+		</script>
 	</head>
 
 	<body data-spy="scroll">
@@ -64,147 +75,32 @@
 		        <!-- Blog Column -->
 		        <div class="col-md-8">
 		            <h1 class="page-header sidebar-title">
-		                Company Blog
+		                小道消息
 		            </h1>
 		            <!-- First Blog Post -->
-		            <div class="row blogu">
+		            <div class="row blogu"  th:each="blog:${blogItems}" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
 		                <div class="col-sm-4 col-md-4 ">
 		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo1.jpg" alt="photo">
+		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}">
+		                            <img class="img-responsive" th:src="@{'/' + ${blog.firstImgUrl}}" alt="photo">
 		                        </a>
 		                    </div>
 		                </div>
 		                <div class="col-sm-8 col-md-8">
 		                    <h2 class="blog-title">
-		                        <a href="#">Post title 1</a>
+		                        <a href="#" th:text="${blog.title}"></a>
 		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
+		                    <p><i class="fa fa-calendar-o"></i> <span th:text="${blog.createTime}"></span>
 		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 0 comments
+		                        <i class="fa fa-comment"></i> <span th:text="${blog.viewCount}"></span> 浏览
 		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+		                    <p th:text="${blog.brief}"></p>
 		                </div>
 		            </div>
-		            <hr>
-		            <!-- Second Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 2</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Third Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                        <img class="img-responsive" src="/static/images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 3</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
-		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 1 comment
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Fourth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo1.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 4</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Fifth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 5</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Six Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 6</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            
-
-
-		            <hr>
 		            <div class="text-center"> 
 		                <ul class="pagination"> 
-		                    <li class="active"> <a href="#">1</a> </li> 
-		                    <li> <a href="#">2</a> </li> 
-		                    <li> <a href="#">3</a> </li> 
-		                    <li> <a href="#">4</a> </li> 
-		                    <li> <a href="#">5</a> </li> 
-		                    <li> <a href="#">Next</a> </li> 
+		                    <li th:each="p:${pageNums}" th:class="${p == curr} ? 'active'"> <a href="#" th:href="@{'/blog?pageNum=' + ${p}}" th:text="${p}">1</a> </li>
+		                    <li th:if="${showNext}"> <a href="#" th:href="@{'/blog?pageNum=' + ${next}}">下一页</a> </li>
 		                </ul> 
 		            </div>
 		        </div>

@@ -22,8 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static club.own.site.constant.ProjectConstant.BLOG_LIST_KEY;
-import static club.own.site.constant.ProjectConstant.MEMBER_LIST_KEY;
+import static club.own.site.constant.ProjectConstant.*;
 import static club.own.site.utils.DateTimeUtils.getCurrentFormatTime;
 import static club.own.site.utils.FileUploadUtils.getBasePath;
 
@@ -36,20 +35,26 @@ public class BlogController extends BaseController {
 
     @GetMapping(value = "blog/list")
     public @ResponseBody String blogList (){
-        Map<String, String> blogMap = redisClient.hgetAll(BLOG_LIST_KEY);
-        List<String> values = Lists.newArrayList(blogMap.values());
+        String by = BLOG_ID_KEY + "->" + BLOG_ID;
+        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, by, 0, 3, false);
         List<BlogItem> blogItems = Lists.newArrayList();
-        values.forEach(s -> {
+        blogList.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
                 EncodeUtils.encodeObj(blogItem);
                 blogItems.add(blogItem);
             }
         });
-        blogItems.sort(Comparator.comparing(BlogItem::getId).reversed());
-        // 最多显示4个
-        List<BlogItem> subRes = blogItems.subList(0, Math.min(3, blogItems.size()));
-        return JSON.toJSONString(subRes);
+
+        return JSON.toJSONString(blogItems);
+    }
+
+    @GetMapping(value = "blog/del")
+    public @ResponseBody String blogDel (){
+        String blogJson = redisClient.lpop(BLOG_LIST_KEY);
+        BlogItem blogItem = JSON.parseObject(blogJson, BlogItem.class);
+        EncodeUtils.encodeObj(blogItem);
+        return "BLOG [" + blogItem.getTitle() + "], id=[" + blogItem.getId() +"] is deleted";
     }
 
     @PostMapping(value = "blog/add")
@@ -86,8 +91,8 @@ public class BlogController extends BaseController {
                 FileUploadUtils.uploadFile(file, dirPath, desFileName);
             }
         }
-
-        redisClient.hset(BLOG_LIST_KEY, String.valueOf(blogItem.getId()), JSON.toJSONString(blogItem));
+        redisClient.hset(BLOG_ID_KEY, BLOG_ID, blogItem.getId());
+        redisClient.rpush(BLOG_LIST_KEY, JSON.toJSONString(blogItem));
 
         return "OK";
     }

@@ -63,4 +63,4 @@ redis:
     min-idle: 10
   password: 123456
 
-basePath: /Users/jiazheng/work/workspace/interpersonalLv/src/main/resources #E:\workspace\interpersonalLv\src\main\resources
+basePath: E:\workspace\interpersonalLv\src\main\resources  #/Users/jiazheng/work/workspace/interpersonalLv/src/main/resources

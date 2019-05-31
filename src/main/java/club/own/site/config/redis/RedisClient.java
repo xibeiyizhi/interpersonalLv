@@ -6,11 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import redis.clients.jedis.SortingParams;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by BookThief on 2016/6/6.
@@ -178,6 +176,47 @@ public class RedisClient {
         try {
             jedisConnection = getJedisConnection();
             return jedisConnection.getNativeConnection().hexists(key, field);
+        } finally {
+            returnResource(jedisConnection);
+        }
+    }
+
+    public long hlen(String key) {
+        checkKey(key);
+        JedisConnection jedisConnection = null;
+        try {
+            jedisConnection = getJedisConnection();
+            return jedisConnection.getNativeConnection().hlen(key);
+        } finally {
+            returnResource(jedisConnection);
+        }
+    }
+
+    public Set<String> hkeys (String key) {
+        checkKey(key);
+        JedisConnection jedisConnection = null;
+        try {
+            jedisConnection = getJedisConnection();
+            return jedisConnection.getNativeConnection().hkeys(key);
+        } finally {
+            returnResource(jedisConnection);
+        }
+    }
+
+    public List<String> sort (String key, String by, int start, int count, boolean asc) {
+        checkKey(key);
+        JedisConnection jedisConnection = null;
+        try {
+            jedisConnection = getJedisConnection();
+            SortingParams sortingParams = new SortingParams();
+            sortingParams.by(by);
+            sortingParams.limit(start, count);
+            if (asc) {
+                sortingParams.asc();
+            } else {
+                sortingParams.desc();
+            }
+            return jedisConnection.getNativeConnection().sort(key, sortingParams);
         } finally {
             returnResource(jedisConnection);
         }
