@@ -52,9 +52,12 @@ public class BlogController extends BaseController {
     @GetMapping(value = "blog/del")
     public @ResponseBody String blogDel (){
         String blogJson = redisClient.lpop(BLOG_LIST_KEY);
-        BlogItem blogItem = JSON.parseObject(blogJson, BlogItem.class);
-        EncodeUtils.encodeObj(blogItem);
-        return "BLOG [" + blogItem.getTitle() + "], id=[" + blogItem.getId() +"] is deleted";
+        if (StringUtils.isNotBlank(blogJson)) {
+            BlogItem blogItem = JSON.parseObject(blogJson, BlogItem.class);
+            EncodeUtils.encodeObj(blogItem);
+            return "BLOG [" + blogItem.getTitle() + "], id=[" + blogItem.getId() +"] is deleted";
+        }
+        return "BLOG IS EMPTY";
     }
 
     @PostMapping(value = "blog/add")
