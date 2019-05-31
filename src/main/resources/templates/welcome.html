@@ -204,6 +204,7 @@
                     success: function (data) {
                         if (data === "OK") {
                             $("#success").text(decodeURI(data));
+                            $("#response_holder").text("");
                             setTimeout("clearForm()", 5000);
                         } else {
                             $("#response_holder").text(decodeURI(data));

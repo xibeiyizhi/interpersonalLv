@@ -50,14 +50,13 @@ public class MemberController extends BaseController {
     }
 
     @GetMapping(value = "member/agree")
-    public @ResponseBody String agree (@RequestParam(value = "agree") String agree,
+    public @ResponseBody String agree (@RequestParam(value = "agree") boolean agree,
                                        @RequestParam(value = "phone") String phone){
-        if (StringUtils.isNotBlank(agree) && agree.equals("on")) {
-            String applyMemJson = redisClient.hget(MEMBER_ADD_APPLY_KEY, phone);
-            Apply applyMem = JSON.parseObject(applyMemJson, Apply.class);
-            applyMem.setAgree(true);
-            redisClient.hset(MEMBER_ADD_APPLY_KEY, phone, JSON.toJSONString(applyMem));
-        }
+
+        String applyMemJson = redisClient.hget(MEMBER_ADD_APPLY_KEY, phone);
+        Apply applyMem = JSON.parseObject(applyMemJson, Apply.class);
+        applyMem.setAgree(agree);
+        redisClient.hset(MEMBER_ADD_APPLY_KEY, phone, JSON.toJSONString(applyMem));
 
         return "OK";
     }
