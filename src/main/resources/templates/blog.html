@@ -1,5 +1,5 @@
-	<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="utf-8">
@@ -24,10 +24,22 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="/static/js/version.js"></script>
+		<!-- jQuery -->
+		<script src="/static/js/jquery-2.1.1.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script>
+			function addTouchClass(o) {
+				$(o).addClass("blog-thumb_active");
+			}
+			function removeTouchClass(o) {
+				$(o).removeClass("blog-thumb_active");
+			}
+		</script>
 	</head>
 
 	<body data-spy="scroll">
@@ -64,242 +76,95 @@
 		        <!-- Blog Column -->
 		        <div class="col-md-8">
 		            <h1 class="page-header sidebar-title">
-		                Company Blog
+		                新闻消息
 		            </h1>
 		            <!-- First Blog Post -->
-		            <div class="row blogu">
+		            <div class="row blogu"  th:each="blog:${blogItems}" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
 		                <div class="col-sm-4 col-md-4 ">
 		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo1.jpg" alt="photo">
+		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}">
+		                            <img class="img-responsive" th:src="@{'/' + ${blog.firstImgUrl}}" alt="photo">
 		                        </a>
 		                    </div>
 		                </div>
 		                <div class="col-sm-8 col-md-8">
 		                    <h2 class="blog-title">
-		                        <a href="#">Post title 1</a>
+		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}" th:text="${blog.title}"></a>
 		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
+		                    <p><i class="fa fa-calendar-o"></i> <span th:text="${blog.createTime}"></span>
 		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 0 comments
+		                        <i class="fa fa-comment"></i> <span th:text="${blog.viewCount}"></span> 浏览
 		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+		                    <p th:text="${blog.brief}"></p>
 		                </div>
 		            </div>
-		            <hr>
-		            <!-- Second Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 2</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Third Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                        <img class="img-responsive" src="/static/images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 3</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
-		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 1 comment
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Fourth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo1.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 4</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Fifth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 5</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Six Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="#">
-		                            <img class="img-responsive" src="/static/images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="#">Post title 6</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            
-
-
-		            <hr>
 		            <div class="text-center"> 
 		                <ul class="pagination"> 
-		                    <li class="active"> <a href="#">1</a> </li> 
-		                    <li> <a href="#">2</a> </li> 
-		                    <li> <a href="#">3</a> </li> 
-		                    <li> <a href="#">4</a> </li> 
-		                    <li> <a href="#">5</a> </li> 
-		                    <li> <a href="#">Next</a> </li> 
+		                    <li th:each="p:${pageNums}" th:class="${p == curr} ? 'active'"> <a href="#" th:href="@{'/blog?pageNum=' + ${p}}" th:text="${p}">1</a> </li>
+		                    <li th:if="${showNext}"> <a href="#" th:href="@{'/blog?pageNum=' + ${next}}">下一页</a> </li>
 		                </ul> 
 		            </div>
 		        </div>
-		            <!-- Blog Sidebar Column -->
-		            <aside class="col-md-4 sidebar-padding">
-		                <div class="blog-sidebar">
-		                    <div class="input-group searchbar">
-		                        <input type="text" class="form-control searchbar" placeholder="Search for...">
-		                        <span class="input-group-btn">
-		                        <button class="btn btn-default" type="button">Search</button>
-		                        </span>
-		                    </div><!-- /input-group -->
-		                </div>
-		                <!-- Blog Categories -->
-		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-list-ul"></i> Categories</h4>
-		                    <hr>
-		                    <ul class="sidebar-list">
-		                        <li><a href="#">Applications</a></li>
-		                        <li><a href="#">Photography</a></li>
-		                        <li><a href="#">Art Design</a></li>
-		                        <li><a href="#">Graphic Design</a></li>
-		                        <li><a href="#">Category Name</a></li>
-		                    </ul>
-		                </div>
-		                <!-- Recent Posts -->
-		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-align-left"></i> Recent Posts</h4>
-		                    <hr style="margin-bottom: 5px;">
+				<!-- Blog Sidebar Column -->
+				<aside class="col-md-4 sidebar-padding">
+					<div class="blog-sidebar">
+						<div class="input-group searchbar">
+							<input type="text" class="form-control searchbar" placeholder="查找...">
+							<span class="input-group-btn">
+							<button class="btn btn-default" type="button">查找</button>
+							</span>
+						</div><!-- /input-group -->
+					</div>
+					<!-- Blog Categories -->
+					<div class="blog-sidebar">
+						<h4 class="sidebar-title"><i class="fa fa-list-ul"></i> 类别</h4>
+						<hr>
+						<ul class="sidebar-list">
+							<li><a href="#">新闻时事</a></li>
+							<li><a href="#">公告通知</a></li>
+							<li><a href="#">情感话题</a></li>
+							<li><a href="#">技术艺术</a></li>
+							<li><a href="#">闲话杂说</a></li>
+						</ul>
+					</div>
+					<!-- Recent Posts -->
+					<div class="blog-sidebar" id="recentPosts">
+						<h4 class="sidebar-title"><i class="fa fa-align-left"></i> 最近新闻</h4>
+						<hr style="margin-bottom: 5px;">
 
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 1</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="/static/images/blog2.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 2</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="/static/images/blog3.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 3</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 4</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-		                </div>
-
-		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-comments"></i> Recent Comments</h4>
-		                    <hr style="margin-bottom: 5px;">
-		                     <ul class="sidebar-list">
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-							</ul>
+						<div id="blogTemplate" class="media" style="display: none">
+							<a class="pull-left" href="#">
+								<img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading"><a href="#">Post title 1</a></h4>
+								<p>This is some sample text. This is some sample text. This is some sample text.</p>
+							</div>
 						</div>
 
-					</aside>
-				</div>
-		    </section>
+					</div>
 
-        
+					<div class="blog-sidebar">
+						<h4 class="sidebar-title"><i class="fa fa-comments"></i> 最新评论</h4>
+						<hr style="margin-bottom: 5px;">
+						 <ul class="sidebar-list" id="commentContainer">
+							<li id="commentTemplate" style="display: none"><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+							</li>
+						</ul>
+					</div>
+
+				</aside>
+			</div>
+		</section>
+
+
 		<section id="contact">
-			<div class="container"> 
+			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-lg-12">
 							<div class="text-center color-elements">
-							<h2>Contact Us</h2>
+								<h2>给我发邮件</h2>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-8">
@@ -307,29 +172,29 @@
 								<div class="row">
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="FULL NAME" required data-validation-required-message="Please write your name!"/>
+											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="姓 名" required data-validation-required-message="请输入您的姓名!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="EMAIL" required data-validation-required-message="Please write your email!"/>
+											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="邮 箱" required data-validation-required-message="请输入邮箱地址!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-12 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="WHAT'S ON YOUR MIND" required data-validation-required-message="Please write a message!"/>
+											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="您想说的话" required data-validation-required-message="请输入邮件内容!"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="Send It"/>
+											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="发送"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset">RESET
+											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset">重写
 											</button>
 										</div>
 									</div>
@@ -339,7 +204,7 @@
 										</div>
 									</div>
 									<div class="col-sm-12 contact-msg">
-									<div id="success"></div>
+										<div id="success"></div>
 									</div>
 								</div>
 							</form>
@@ -349,19 +214,19 @@
 								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
 										<i class="fa fa-2x fa-map-marker"></i>
-										<span class="text">LOCATION</span>
+										<span class="text">地址</span>
 									</div>
 								</div>
 								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
 										<i class="fa fa-2x fa-phone"></i>
-										<span class="text">0051 768622115</span>
-									 </div>
-								 </div>
-								<div class="col-md-12 height-contact-element">    
+										<span class="text">+86 13488788682</span>
+									</div>
+								</div>
+								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
 										<i class="fa fa-2x fa-envelope"></i>
-										<span class="text">info@company.com</span>
+										<span class="text">xibeiyizhi@163.com</span>
 									</div>
 								</div>
 							</div>
@@ -374,7 +239,7 @@
 		<section id="follow-us">
 			<div class="container"> 
 				<div class="text-center height-contact-element">
-					<h2>FOLLOW US</h2>
+					<h2>其他方式</h2>
 				</div>
 				<img class="img-responsive displayed" src="/static/images/short.png" alt="short" />
 				<div class="text-center height-contact-element">
@@ -400,13 +265,6 @@
 				</div>
 			</div>
 		</footer>
-
-
-        <!-- jQuery -->
-        <script src="/static/js/jquery-2.1.1.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/static/js/bootstrap.min.js"></script>
-
 
         <!--Jquery Smooth Scrolling-->
         <script>
@@ -452,6 +310,60 @@
 
             });
         </script>
+		<script>
+			$.ajax({
+				url:"blog/list",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#blogTemplate");
+					let container = $("#recentPosts");
+					arr.forEach(function (blog) {
+						let blogNode = $(temp).clone(true);
+						blogNode.attr("id",blog.id);
+						blogNode.find("p").text(decodeURI(blog.brief));
+						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
+						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
+						blogNode.on('touchstart', function () {
+							blogNode.find("img").addClass("media_img_active");
+						});
+						blogNode.on('touchend', function () {
+							blogNode.find("img").removeClass("media_img_active");
+						});
+						blogNode.css("display", "block");
+						container.append(blogNode);
+					})
+				},
+				error:function (data) {
 
+				}
+			});
+
+			$.ajax({
+				url:"blog/comments",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#commentTemplate");
+					let container = $("#commentContainer");
+					arr.forEach(function (comment) {
+						let commentNode = $(temp).clone(true);
+						commentNode.attr("id",comment.id);
+						commentNode.find("p").text(decodeURI(comment.content));
+						commentNode.find("h5").text(decodeURI(comment.author));
+						commentNode.css("display", "block");
+						container.append(commentNode);
+					})
+				},
+				error:function (data) {
+
+				}
+			})
+		</script>
     </body>
 </html>

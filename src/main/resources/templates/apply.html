@@ -133,13 +133,13 @@
         var pre = applyItem.find("pre");
         pre.html(html);
         var isAgree = jsonObj.agree || '';
-        if (isAgree === 'true') {
+        if (isAgree === true) {
             applyItem.find('input').attr('checked','checked');
         } else {
             applyItem.find('input').removeAttr('checked');
         }
         applyItem.find('input').click(function (e) {
-            $.get("agree?agree="+ e.target.value + '&phone=' + jsonObj.mobile, function (result) {
+            $.get("agree?agree="+ e.target.checked + '&phone=' + jsonObj.mobile, function (result) {
                 console.log(result);
             });
         });

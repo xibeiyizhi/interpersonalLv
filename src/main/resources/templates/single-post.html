@@ -23,10 +23,10 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="/static/js/version.js"></script>
 	</head>
 
     <body data-spy="scroll">
@@ -148,86 +148,53 @@
 				<aside class="col-md-4 sidebar-padding">
 					<div class="blog-sidebar">
 						<div class="input-group searchbar">
-							<input type="text" class="form-control searchbar" placeholder="Search for...">
+							<input type="text" class="form-control searchbar" placeholder="查找...">
 							<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Search</button>
+							<button class="btn btn-default" type="button">查找</button>
 							</span>
 						</div><!-- /input-group -->
 					</div>
 					<!-- Blog Categories -->
 					<div class="blog-sidebar">
-						<h4 class="sidebar-title"><i class="fa fa-list-ul"></i> Categories</h4>
+						<h4 class="sidebar-title"><i class="fa fa-list-ul"></i> 类别</h4>
 						<hr>
 						<ul class="sidebar-list">
-							<li><a href="#">Applications</a></li>
-							<li><a href="#">Photography</a></li>
-							<li><a href="#">Art Design</a></li>
-							<li><a href="#">Graphic Design</a></li>
-							<li><a href="#">Category Name</a></li>
+							<li><a href="#">新闻时事</a></li>
+							<li><a href="#">公告通知</a></li>
+							<li><a href="#">情感话题</a></li>
+							<li><a href="#">技术艺术</a></li>
+							<li><a href="#">闲话杂说</a></li>
 						</ul>
 					</div>
 					<!-- Recent Posts -->
-					<div class="blog-sidebar">
-					    <h4 class="sidebar-title"><i class="fa fa-align-left"></i> Recent Posts</h4>
-					    <hr style="margin-bottom: 5px;">
+					<div class="blog-sidebar" id="recentPosts">
+						<h4 class="sidebar-title"><i class="fa fa-align-left"></i> 最近新闻</h4>
+						<hr style="margin-bottom: 5px;">
 
-					    <div class="media">
-					        <a class="pull-left" href="#">
-					            <img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
-					        </a>
-					        <div class="media-body">
-					            <h4 class="media-heading"><a href="#">Post title 1</a></h4>
-					            This is some sample text. This is some sample text. This is some sample text.
-					        </div>
-					    </div>
+						<div id="blogTemplate" class="media" style="display: none">
+							<a class="pull-left" href="#">
+								<img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading"><a href="#">Post title 1</a></h4>
+								<p>This is some sample text. This is some sample text. This is some sample text.</p>
+							</div>
+						</div>
 
-					    <div class="media">
-					        <a class="pull-left" href="#">
-					            <img class="img-responsive media-object" src="/static/images/blog2.jpg" alt="Media Object">
-					        </a>
-					        <div class="media-body">
-					            <h4 class="media-heading"><a href="#">Post title 2</a></h4>
-					            This is some sample text. This is some sample text. This is some sample text.
-					        </div>
-					    </div>
-
-					    <div class="media">
-					        <a class="pull-left" href="#">
-					            <img class="img-responsive media-object" src="/static/images/blog3.jpg" alt="Media Object">
-					        </a>
-					        <div class="media-body">
-					            <h4 class="media-heading"><a href="#">Post title 3</a></h4>
-					            This is some sample text. This is some sample text. This is some sample text.
-					        </div>
-					    </div>
-					    <div class="media">
-					        <a class="pull-left" href="#">
-					            <img class="img-responsive media-object" src="/static/images/blog1.jpg" alt="Media Object">
-					        </a>
-					        <div class="media-body">
-					            <h4 class="media-heading"><a href="#">Post title 4</a></h4>
-					            This is some sample text. This is some sample text. This is some sample text.
-					        </div>
-					    </div>
 					</div>
 
 					<div class="blog-sidebar">
-					    <h4 class="sidebar-title"><i class="fa fa-comments"></i> Recent Comments</h4>
-					    <hr style="margin-bottom: 5px;">
-					     <ul class="sidebar-list">
-					        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-					        </li>
-					        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-					        </li>
-					        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-					        </li>
-					    </ul>
+						<h4 class="sidebar-title"><i class="fa fa-comments"></i> 最新评论</h4>
+						<hr style="margin-bottom: 5px;">
+						<ul class="sidebar-list" id="commentContainer">
+							<li id="commentTemplate" style="display: none"><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+							</li>
+						</ul>
 					</div>
 
 				</aside>
 			</div>
 	    </div>
-
 
 		<section id="contact">
 			<div class="container"> 
@@ -396,6 +363,60 @@
                 });
             });
         </script>
+		<script>
+			$.ajax({
+				url:"blog/list",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#blogTemplate");
+					let container = $("#recentPosts");
+					arr.forEach(function (blog) {
+						let blogNode = $(temp).clone(true);
+						blogNode.attr("id",blog.id);
+						blogNode.find("p").text(decodeURI(blog.brief));
+						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
+						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
+						blogNode.on('touchstart', function () {
+							blogNode.find("img").addClass("media_img_active");
+						});
+						blogNode.on('touchend', function () {
+							blogNode.find("img").removeClass("media_img_active");
+						});
+						blogNode.css("display", "block");
+						container.append(blogNode);
+					})
+				},
+				error:function (data) {
 
+				}
+			});
+
+			$.ajax({
+				url:"blog/comments",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#commentTemplate");
+					let container = $("#commentContainer");
+					arr.forEach(function (comment) {
+						let commentNode = $(temp).clone(true);
+						commentNode.attr("id",comment.id);
+						commentNode.find("p").text(decodeURI(comment.content));
+						commentNode.find("h5").text(decodeURI(comment.author));
+						commentNode.css("display", "block");
+						container.append(commentNode);
+					})
+				},
+				error:function (data) {
+
+				}
+			})
+		</script>
     </body>
 </html>

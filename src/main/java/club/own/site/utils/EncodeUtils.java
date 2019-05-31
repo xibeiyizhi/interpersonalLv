@@ -31,9 +31,10 @@ public class EncodeUtils {
             try {
                 for (Field field: fields) {
                     field.setAccessible(true);
-                    if (field.getType().getName().endsWith("String")) {
-                        PropertyDescriptor pd = new PropertyDescriptor(field.getName(), t.getClass());
-                        Method rm = pd.getReadMethod();
+                    PropertyDescriptor pd = new PropertyDescriptor(field.getName(), t.getClass());
+                    Method rm = pd.getReadMethod();
+                    Object obj = rm.invoke(t);
+                    if (obj instanceof String) {
                         String value = (String) rm.invoke(t);
                         if (StringUtils.isBlank(value)) {
                             continue;

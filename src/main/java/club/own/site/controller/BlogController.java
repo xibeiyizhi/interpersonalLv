@@ -1,6 +1,7 @@
 package club.own.site.controller;
 
 import club.own.site.bean.BlogItem;
+import club.own.site.bean.Comment;
 import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
 import club.own.site.utils.EncodeUtils;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -22,8 +24,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static club.own.site.constant.ProjectConstant.BLOG_LIST_KEY;
-import static club.own.site.constant.ProjectConstant.MEMBER_LIST_KEY;
+import static club.own.site.constant.ProjectConstant.*;
 import static club.own.site.utils.DateTimeUtils.getCurrentFormatTime;
 import static club.own.site.utils.FileUploadUtils.getBasePath;
 
@@ -36,20 +37,50 @@ public class BlogController extends BaseController {
 
     @GetMapping(value = "blog/list")
     public @ResponseBody String blogList (){
-        Map<String, String> blogMap = redisClient.hgetAll(BLOG_LIST_KEY);
-        List<String> values = Lists.newArrayList(blogMap.values());
+        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", 0, 3, false);
         List<BlogItem> blogItems = Lists.newArrayList();
-        values.forEach(s -> {
+        blogList.forEach(s -> {
             if (StringUtils.isNotBlank(s)) {
                 BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
                 EncodeUtils.encodeObj(blogItem);
                 blogItems.add(blogItem);
             }
         });
-        blogItems.sort(Comparator.comparing(BlogItem::getId).reversed());
-        // 最多显示4个
-        List<BlogItem> subRes = blogItems.subList(0, Math.min(3, blogItems.size()));
-        return JSON.toJSONString(subRes);
+
+        return JSON.toJSONString(blogItems);
+    }
+
+    @GetMapping(value = "blog/comments")
+    public @ResponseBody String blogComments (){
+        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", 0, 3, false);
+        List<Comment> comments = Lists.newArrayList();
+        blogList.forEach(s -> {
+            if (StringUtils.isNotBlank(s)) {
+                BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
+                EncodeUtils.encodeObj(blogItem);
+                if (CollectionUtils.isNotEmpty(blogItem.getComments())) {
+                    comments.addAll(blogItem.getComments());
+                }
+            }
+        });
+
+        return JSON.toJSONString(comments);
+    }
+
+    @GetMapping(value = "blog/del")
+    public @ResponseBody String blogDel (@RequestParam(value = "idx", required = false) String idx){
+        if (StringUtils.isNotBlank(idx)) {
+            String blogJson = redisClient.lindex(BLOG_LIST_KEY, Integer.valueOf(idx));
+            redisClient.lrem(BLOG_LIST_KEY, -1, blogJson);
+        } else {
+            String blogJson = redisClient.lpop(BLOG_LIST_KEY);
+            if (StringUtils.isNotBlank(blogJson)) {
+                BlogItem blogItem = JSON.parseObject(blogJson, BlogItem.class);
+                EncodeUtils.encodeObj(blogItem);
+                return "BLOG [" + blogItem.getTitle() + "], id=[" + blogItem.getId() +"] is deleted";
+            }
+        }
+        return "OK";
     }
 
     @PostMapping(value = "blog/add")
@@ -86,8 +117,7 @@ public class BlogController extends BaseController {
                 FileUploadUtils.uploadFile(file, dirPath, desFileName);
             }
         }
-
-        redisClient.hset(BLOG_LIST_KEY, String.valueOf(blogItem.getId()), JSON.toJSONString(blogItem));
+        redisClient.rpush(BLOG_LIST_KEY, JSON.toJSONString(blogItem));
 
         return "OK";
     }
