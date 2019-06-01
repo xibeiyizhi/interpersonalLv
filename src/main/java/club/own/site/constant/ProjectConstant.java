@@ -9,6 +9,8 @@ public class ProjectConstant {
         SON;
     }
 
+    public static final String default_user_phone = "13488788682";
+
     public static final String MEMBER_ADD_APPLY_KEY = "member_add_apply";
     public static final int MEMBER_ADD_APPLY_EXPIRE = 604800 ; // 7天
 

@@ -6,6 +6,7 @@ import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
 import club.own.site.utils.EncodeUtils;
 import club.own.site.utils.FileUploadUtils;
+import club.own.site.utils.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +76,29 @@ public class BlogController extends BaseController {
         });
 
         return JSON.toJSONString(comments);
+    }
+
+    @PostMapping(value = "blog/comment/add")
+    public @ResponseBody String addComment (@RequestParam(name = "id") String blogId,
+                                            HttpServletRequest request){
+        Map<String, String> params = parseRequestParam(request.getParameterMap());
+        String commentBody = params.get("comment");
+        String phone = StringUtils.isNotBlank(params.get("phone")) ? params.get("phone") : default_user_phone;
+        String blogItemJson = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
+        if (StringUtils.isNotBlank(blogItemJson)) {
+            BlogItem blogItem = JSON.parseObject(blogItemJson, BlogItem.class);
+            Comment comment = new Comment();
+            comment.setContent(commentBody);
+            comment.setCreateTime(getCurrentFormatTime());
+            String memberJson = redisClient.hget(MEMBER_LIST_KEY, phone);
+            if (StringUtils.isNotBlank(memberJson)) {
+                Member member = JSON.parseObject(memberJson, Member.class);
+                comment.setAuthor(member);
+            }
+            blogItem.getComments().add(comment);
+            redisClient.hset(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY, JSON.toJSONString(blogItem));
+        }
+        return "OK";
     }
 
     @GetMapping(value = "blog/del")

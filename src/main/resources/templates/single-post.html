@@ -91,9 +91,9 @@
 			        <div class="comments1">
 						<div class="well">
 							<h4>添加评论:</h4>
-							<form>
+							<form th:action="@{'/blog/comment/add?id=' + ${blogItem.getId()}}" accept-charset="UTF-8">
 								<div class="form-group">
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea class="form-control" rows="3" name="comment"></textarea>
 								</div>
 								<button type="submit" class="btn btn-primary">提交</button>
 							</form>

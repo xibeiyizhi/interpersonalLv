@@ -80,9 +80,9 @@
 		                新闻消息
 		            </h1>
 		            <!-- First Blog Post -->
-		            <div class="row blogu"  th:each="blog:${blogItems}" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
+		            <div class="row blogu"  th:each="blog:${blogItems}">
 		                <div class="col-sm-4 col-md-4 ">
-		                    <div class="blog-thumb">
+		                    <div class="blog-thumb" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
 		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}">
 		                            <img class="img-responsive" th:src="@{'/' + ${blog.firstImgUrl}}" alt="photo">
 		                        </a>

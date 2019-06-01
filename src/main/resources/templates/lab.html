@@ -56,10 +56,17 @@
         </div>
     </nav>
 
-    <div class="container blog">
+    <div class="container blog" style="height: 100%;">
         <div class="text-center homeport2">
             <div class="row">
-                正在建设中...
+                <div class="col-md-8">
+                    <ul class="color-elements" style="float: left; text-align: left">
+                        <li>UUID: <span id="uuid"></span></li>
+                        <li>LATITUDE: <span id="latitude"></span></li>
+                        <li>LONGITUDE: <span id="longitude"></span></li>
+                        <li>ALTITUDE: <span id="altitude"></span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -80,5 +87,22 @@
     <script src="/static/js/jquery-2.1.1.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+        function plusReady() {
+            $("#uuid").text(plus.device.uuid);
+            plus.geolocation.getCurrentPosition(function(p){
+                $("#latitude").text(p.coords.latitude);
+                $("#longitude").text(p.coords.longitude);
+                $("#altitude").text(p.coords.altitude);
+            }, function(e){
+                alert('Geolocation error: ' + e.message);
+            } );
+        }
+        if(window.plus){
+            plusReady();
+        }else{
+            document.addEventListener("plusready",plusReady,false);
+        }
+    </script>
 </body>
 </html>
