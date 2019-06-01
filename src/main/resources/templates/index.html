@@ -431,6 +431,41 @@
 		</script>
 		<script>
 			$.ajax({
+				url:"blog/list",
+				type:"GET",
+				contentType: 'text/json,charset=utf-8',
+				dataType:"json",
+				success:function (data) {
+					let arr = eval(data);
+					let temp = $("#blogTemplate");
+					let container = $("#bloghome").find(".homeport1");
+					arr.forEach(function (blog) {
+						let blogNode = $(temp).clone(true);
+						blogNode.attr("id",blog.id);
+						blogNode.find("h2").text(decodeURI(blog.title));
+						blogNode.find("p").text(decodeURI(blog.content));
+						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						blogNode.find("a[name='viewMore']").attr("href","/blog?position="+ blog.id);
+						blogNode.find("a[name='readMore']").attr("href","/singlepost?id="+ blog.id);
+						blogNode.on('touchstart', function () {
+							blogNode.find("figure").removeClass("effect-oscar");
+							blogNode.find("figure").addClass("effect-oscar-active");
+						});
+						blogNode.on('touchend', function () {
+							blogNode.find("figure").removeClass("effect-oscar-active");
+							blogNode.find("figure").addClass("effect-oscar");
+						});
+						blogNode.css("display", "block");
+						container.append(blogNode);
+					})
+				},
+				error:function (data) {
+
+				}
+			})
+		</script>
+		<script>
+			$.ajax({
 				url:"member/list",
 				type:"GET",
 				contentType: 'text/json,charset=utf-8',
@@ -456,41 +491,7 @@
 				}
 			})
 		</script>
-		<script>
-			$.ajax({
-				url:"blog/list",
-				type:"GET",
-				contentType: 'text/json,charset=utf-8',
-				dataType:"json",
-				success:function (data) {
-					let arr = eval(data);
-					let temp = $("#blogTemplate");
-					let container = $("#bloghome").find(".homeport1");
-					arr.forEach(function (blog) {
-						let blogNode = $(temp).clone(true);
-						blogNode.attr("id",blog.id);
-						blogNode.find("h2").text(decodeURI(blog.title));
-						blogNode.find("p").text(decodeURI(blog.content));
-						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
-						blogNode.find("a[name='viewMore']").attr("href","/blog");
-						blogNode.find("a[name='readMore']").attr("href","/singlepost?id="+ blog.id);
-						blogNode.on('touchstart', function () {
-							blogNode.find("figure").removeClass("effect-oscar");
-							blogNode.find("figure").addClass("effect-oscar-active");
-						});
-						blogNode.on('touchend', function () {
-							blogNode.find("figure").removeClass("effect-oscar-active");
-							blogNode.find("figure").addClass("effect-oscar");
-						});
-						blogNode.css("display", "block");
-						container.append(blogNode);
-					})
-				},
-				error:function (data) {
 
-				}
-			})
-		</script>
 	</body>
 </html>
 

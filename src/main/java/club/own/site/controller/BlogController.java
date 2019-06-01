@@ -9,6 +9,7 @@ import club.own.site.utils.FileUploadUtils;
 import club.own.site.utils.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,7 +62,7 @@ public class BlogController extends BaseController {
     public @ResponseBody String blogComments (@RequestParam(name = "cate", required = false, defaultValue = "-1") String cateCode){
         String blogListKey = Integer.valueOf(cateCode) < 0 ? BLOG_LIST_KEY : (BLOG_CATE_LIST_KEY + getNameByCode(cateCode));
         List<String> blogList = redisClient.sort(blogListKey, "", 0, 3, false);
-        List<Comment> comments = Lists.newArrayList();
+        List<Map<String, Object>> comments = Lists.newArrayList();
         blogList.forEach(id -> {
             if (StringUtils.isNotBlank(id)) {
                 String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
@@ -70,10 +72,18 @@ public class BlogController extends BaseController {
                 BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
                 EncodeUtils.encodeObj(blogItem);
                 if (CollectionUtils.isNotEmpty(blogItem.getComments())) {
-                    comments.addAll(blogItem.getComments());
+                    for (Comment comment : blogItem.getComments()) {
+                        Map<String, Object> map = Maps.newHashMap();
+                        map.put("id", comment.getId());
+                        map.put("title", blogItem.getTitle());
+                        map.put("comment", comment);
+                        map.put("blogId", blogItem.getId());
+                        comments.add(map);
+                    }
                 }
             }
         });
+        comments.sort((o1, o2) -> Long.valueOf((long)o2.get("id") - (long)o1.get("id")).intValue());
 
         return JSON.toJSONString(comments);
     }

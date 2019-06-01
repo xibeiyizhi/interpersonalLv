@@ -91,17 +91,20 @@
 			        <div class="comments1">
 						<div class="well">
 							<h4>添加评论:</h4>
-							<form th:action="@{'/blog/comment/add?id=' + ${blogItem.getId()}}" accept-charset="UTF-8">
+							<form th:action="@{'/blog/comment/add?id=' + ${blogItem.getId()}}" accept-charset="UTF-8" method="post">
 								<div class="form-group">
-									<textarea class="form-control" rows="3" name="comment"></textarea>
+									<textarea class="form-control" rows="3" name="comment" style="color: #777777"></textarea>
 								</div>
+								<select name="phone" style="height: 32px;">
+									<option th:each="mem:${members}" th:selected="${blogItem.getAuthor().getMobile().equals(mem.getMobile())}" th:value="${mem.getMobile()}" th:text="${mem.getName()}"></option>
+								</select>
 								<button type="submit" class="btn btn-primary">提交</button>
 							</form>
 						</div>
 						<hr>
 						<div class="media" th:each="comment:${blogItem.getComments()}">
-							<a class="pull-left" href="#" th:href="@{'//member/detail?phone=' + ${comment.getAuthor().getMobile()}}">
-							    <img class="media-object" src="" th:src="@{'/' + comment.getAuthor().getFirstImgUrl()}" alt="">
+							<a class="pull-left" href="#" th:href="@{'/member/detail?phone=' + ${comment.getAuthor().getMobile()}}">
+							    <img class="media-object" src="" th:src="@{'/' + ${comment.getAuthor().getFirstImgUrl()}}" alt="">
 							</a>
 							<div class="media-body">
 								<h4 class="media-heading"><span th:text="${comment.getAuthor().getName()}"></span>
@@ -109,8 +112,8 @@
 								</h4>
 								<p th:text="${comment.getContent()}"></p>
 								<div class="media" th:each="reply:${comment.getReplyList()}">
-									<a class="pull-left" href="#" th:href="@{'//member/detail?phone=' + ${reply.getAuthor().getMobile()}}">
-										<img class="media-object" src="" th:src="@{'/' + reply.getAuthor().getFirstImgUrl()}" alt="">
+									<a class="pull-left" href="#" th:href="@{'/member/detail?phone=' + ${reply.getAuthor().getMobile()}}">
+										<img class="media-object" src="" th:src="@{'/' + ${reply.getAuthor().getFirstImgUrl()}}" alt="">
 									</a>
 									<div class="media-body">
 										<h4 class="media-heading"><span th:text="${reply.getAuthor().getName()}"></span>
@@ -162,7 +165,7 @@
 						<h4 class="sidebar-title"><i class="fa fa-comments"></i> 最新评论</h4>
 						<hr style="margin-bottom: 5px;">
 						<ul class="sidebar-list" id="commentContainer">
-							<li id="commentTemplate" style="display: none"><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+							<li id="commentTemplate" style="display: none"><h5 class="blog-title"></h5> <a></a> <p></p>
 							</li>
 						</ul>
 					</div>
@@ -379,11 +382,13 @@
 					let arr = eval(data);
 					let temp = $("#commentTemplate");
 					let container = $("#commentContainer");
-					arr.forEach(function (comment) {
+					arr.forEach(function (data) {
 						let commentNode = $(temp).clone(true);
-						commentNode.attr("id",comment.id);
-						commentNode.find("p").text(decodeURI(comment.content));
-						commentNode.find("h5").text(decodeURI(comment.author));
+						commentNode.attr("id",data.comment.id);
+						commentNode.find("p").text(decodeURI(data.comment.content));
+						commentNode.find("h5").text(decodeURI(data.comment.author.name));
+						commentNode.find("a").text(decodeURI(data.title));
+						commentNode.find("a").attr('href','/singlepost?id=' + data.blogId);
 						commentNode.css("display", "block");
 						container.append(commentNode);
 					})

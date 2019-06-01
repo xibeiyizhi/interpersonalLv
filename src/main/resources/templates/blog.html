@@ -44,6 +44,7 @@
 
 	<body data-spy="scroll">
 		<span id="currCate" th:text="${currCate}" style="display: none;"></span>
+		<span id="currPosition" th:text="${position}" style="display: none;"></span>
 		<!-- Navigation -->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
@@ -80,7 +81,7 @@
 		                新闻消息
 		            </h1>
 		            <!-- First Blog Post -->
-		            <div class="row blogu"  th:each="blog:${blogItems}">
+		            <div class="row blogu"  th:each="blog:${blogItems}" th:id="${blog.getId()}">
 		                <div class="col-sm-4 col-md-4 ">
 		                    <div class="blog-thumb" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
 		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}">
@@ -145,7 +146,7 @@
 						<h4 class="sidebar-title"><i class="fa fa-comments"></i> 最新评论</h4>
 						<hr style="margin-bottom: 5px;">
 						 <ul class="sidebar-list" id="commentContainer">
-							<li id="commentTemplate" style="display: none"><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+							<li id="commentTemplate" style="display: none"><h5 class="blog-title"></h5> <a></a> <p></p>
 							</li>
 						</ul>
 					</div>
@@ -354,11 +355,13 @@
 					let arr = eval(data);
 					let temp = $("#commentTemplate");
 					let container = $("#commentContainer");
-					arr.forEach(function (comment) {
+					arr.forEach(function (data) {
 						let commentNode = $(temp).clone(true);
-						commentNode.attr("id",comment.id);
-						commentNode.find("p").text(decodeURI(comment.content));
-						commentNode.find("h5").text(decodeURI(comment.author));
+						commentNode.attr("id",data.comment.id);
+						commentNode.find("p").text(decodeURI(data.comment.content));
+						commentNode.find("h5").text(decodeURI(data.comment.author.name));
+						commentNode.find("a").text(decodeURI(data.title));
+						commentNode.find("a").attr('href','/singlepost?id=' + data.blogId);
 						commentNode.css("display", "block");
 						container.append(commentNode);
 					})
@@ -366,7 +369,12 @@
 				error:function (data) {
 
 				}
-			})
+			});
+
+			if ($("#currPosition").text()) {
+				var pos = "#" + $("#currPosition").text();
+				$("html,body").animate({scrollTop: $(pos).offset().top - $(".navbar").height() - 50}, 500);
+			}
 		</script>
     </body>
 </html>

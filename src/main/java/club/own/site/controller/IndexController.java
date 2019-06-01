@@ -2,6 +2,7 @@ package club.own.site.controller;
 
 import club.own.site.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
+import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
 import club.own.site.utils.DateTimeUtils;
 import club.own.site.utils.TextUtils;
@@ -53,7 +54,8 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping(value = "/blog", method = RequestMethod.GET)
-    public ModelAndView blog(@RequestParam(name = "pageNum", required = false, defaultValue = "0") int pageNum,
+    public ModelAndView blog(@RequestParam(name = "position", required = false, defaultValue = "") String position,
+                             @RequestParam(name = "pageNum", required = false, defaultValue = "0") int pageNum,
                              @RequestParam(name = "cate", required = false, defaultValue = "-1") String cateCode) throws Exception {
         String blogListKey = Integer.valueOf(cateCode) < 0 ? BLOG_LIST_KEY : (BLOG_CATE_LIST_KEY + getNameByCode(cateCode));
         long total = redisClient.llen(blogListKey);
@@ -95,6 +97,7 @@ public class IndexController extends BaseController {
         mav.addObject("blogItems", blogItems);
         mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
         mav.addObject("currCate", cateCode);
+        mav.addObject("position", position);
         return mav;
     }
 
@@ -117,6 +120,9 @@ public class IndexController extends BaseController {
             mav.addObject("blogCate", cateName);
         }
         mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
+
+        List<Member> members = redisClient.hgetAllValue(MEMBER_LIST_KEY, Member.class);
+        mav.addObject("members", members);
         mav.setViewName("single-post");
         return mav;
     }
