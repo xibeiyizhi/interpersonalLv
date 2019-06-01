@@ -2,12 +2,9 @@ package club.own.site.controller;
 
 import club.own.site.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
-import club.own.site.bean.Img;
-import club.own.site.bean.Quotation;
 import club.own.site.config.redis.RedisClient;
-import club.own.site.constant.ProjectConstant;
 import club.own.site.utils.DateTimeUtils;
-import club.own.site.utils.EncodeUtils;
+import club.own.site.utils.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
+import static club.own.site.BlogCategoryEnum.getNameByCode;
 import static club.own.site.constant.ProjectConstant.*;
 
 @Slf4j
@@ -54,8 +53,10 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping(value = "/blog", method = RequestMethod.GET)
-    public ModelAndView blog(@RequestParam(name = "pageNum", required = false, defaultValue = "0") int pageNum) throws Exception {
-        long total = redisClient.llen(BLOG_LIST_KEY);
+    public ModelAndView blog(@RequestParam(name = "pageNum", required = false, defaultValue = "0") int pageNum,
+                             @RequestParam(name = "cate", required = false, defaultValue = "-1") String cateCode) throws Exception {
+        String blogListKey = Integer.valueOf(cateCode) < 0 ? BLOG_LIST_KEY : (BLOG_CATE_LIST_KEY + getNameByCode(cateCode));
+        long total = redisClient.llen(blogListKey);
         int pageSize = 5, paginationSize = 5;
         int totalPageCount = Long.valueOf(total / pageSize + (total % pageSize > 0 ? 1 : 0)).intValue();
         List<Integer> showPageNums = Lists.newArrayList();
@@ -73,14 +74,16 @@ public class IndexController extends BaseController {
         }
         boolean showNext = totalPageCount > paginationSize;
         int start = pageNum - 1 > 0 ? ((pageNum - 1) * pageSize) : 0;
-        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", start, pageSize, false);
+        List<String> blogList = redisClient.sort(blogListKey, "", start, pageSize, false);
         List<BlogItem> blogItems = Lists.newArrayList();
-        blogList.forEach(id -> {
+        blogList.stream().filter(Objects::nonNull).forEach(id -> {
             if (StringUtils.isNotBlank(id)) {
                 String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
-                BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
-                blogItem.setCreateTime(DateTimeUtils.toBlogShowFormat(blogItem.getCreateTime()));
-                blogItems.add(blogItem);
+                if (StringUtils.isNotBlank(blogContent)) {
+                    BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
+                    blogItem.setCreateTime(DateTimeUtils.toBlogShowFormat(blogItem.getCreateTime()));
+                    blogItems.add(blogItem);
+                }
             }
         });
         ModelAndView mav = new ModelAndView();
@@ -90,14 +93,30 @@ public class IndexController extends BaseController {
         mav.addObject("curr", pageNum);
         mav.addObject("next", pageNum + 1);
         mav.addObject("blogItems", blogItems);
-        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategorys());
+        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
+        mav.addObject("currCate", cateCode);
         return mav;
     }
 
     @RequestMapping(value = "/singlepost", method = RequestMethod.GET)
-    public ModelAndView singlePost() throws Exception {
+    public ModelAndView singlePost(@RequestParam(value = "id") String id) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategorys());
+        String blogItemJson = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
+        if (StringUtils.isNotBlank(blogItemJson)) {
+            BlogItem blogItem = JSON.parseObject(blogItemJson, BlogItem.class);
+            // 更新浏览数
+            blogItem.setViewCount(blogItem.getViewCount() + 1);
+            redisClient.hset(BLOG_ITEM_KEY + id, BLOG_BODY_KEY, JSON.toJSONString(blogItem));
+            mav.addObject("blogItem", blogItem);
+            mav.addObject("blogBodyRichText", TextUtils.getParagraphList(blogItem.getContent()));
+        }
+        String category = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_CATE_KEY);
+        if (StringUtils.isNotBlank(category)) {
+            String cateName = BlogCategoryEnum.getNameByCode(category);
+            mav.addObject("blogCateCode", category);
+            mav.addObject("blogCate", cateName);
+        }
+        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
         mav.setViewName("single-post");
         return mav;
     }

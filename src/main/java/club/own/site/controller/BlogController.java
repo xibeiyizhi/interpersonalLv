@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.management.StringValueExp;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,15 +36,18 @@ public class BlogController extends BaseController {
     private RedisClient redisClient;
 
     @GetMapping(value = "blog/list")
-    public @ResponseBody String blogList (){
-        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", 0, 3, false);
+    public @ResponseBody String blogList (@RequestParam(name = "cate", required = false, defaultValue = "-1") String cateCode){
+        String blogListKey = Integer.valueOf(cateCode) < 0 ? BLOG_LIST_KEY : (BLOG_CATE_LIST_KEY + getNameByCode(cateCode));
+        List<String> blogList = redisClient.sort(blogListKey, "", 0, 3, false);
         List<BlogItem> blogItems = Lists.newArrayList();
         blogList.forEach(id -> {
             if (StringUtils.isNotBlank(id)) {
                 String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
-                BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
-                EncodeUtils.encodeObj(blogItem);
-                blogItems.add(blogItem);
+                if (StringUtils.isNotBlank(blogContent)) {
+                    BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
+                    EncodeUtils.encodeObj(blogItem);
+                    blogItems.add(blogItem);
+                }
             }
         });
 
@@ -54,12 +55,17 @@ public class BlogController extends BaseController {
     }
 
     @GetMapping(value = "blog/comments")
-    public @ResponseBody String blogComments (){
-        List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", 0, 3, false);
+    public @ResponseBody String blogComments (@RequestParam(name = "cate", required = false, defaultValue = "-1") String cateCode){
+        String blogListKey = Integer.valueOf(cateCode) < 0 ? BLOG_LIST_KEY : (BLOG_CATE_LIST_KEY + getNameByCode(cateCode));
+        List<String> blogList = redisClient.sort(blogListKey, "", 0, 3, false);
         List<Comment> comments = Lists.newArrayList();
-        blogList.forEach(s -> {
-            if (StringUtils.isNotBlank(s)) {
-                BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
+        blogList.forEach(id -> {
+            if (StringUtils.isNotBlank(id)) {
+                String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
+                if (StringUtils.isBlank(blogContent)) {
+                    return;
+                }
+                BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
                 EncodeUtils.encodeObj(blogItem);
                 if (CollectionUtils.isNotEmpty(blogItem.getComments())) {
                     comments.addAll(blogItem.getComments());
@@ -73,15 +79,21 @@ public class BlogController extends BaseController {
     @GetMapping(value = "blog/del")
     public @ResponseBody String blogDel (@RequestParam(value = "idx", required = false) String idx){
         if (StringUtils.isNotBlank(idx)) {
-            String blogJson = redisClient.lindex(BLOG_LIST_KEY, Integer.valueOf(idx));
-            redisClient.lrem(BLOG_LIST_KEY, -1, blogJson);
+            String id = redisClient.lindex(BLOG_LIST_KEY, Integer.valueOf(idx));
+            redisClient.lrem(BLOG_LIST_KEY, -1, id);
+            String category = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_CATE_KEY);
+            redisClient.lrem(BLOG_CATE_LIST_KEY + getNameByCode(category), -1, id);
+            redisClient.hdel(BLOG_ITEM_KEY + id);
         } else {
-            String blogJson = redisClient.lpop(BLOG_LIST_KEY);
-            if (StringUtils.isNotBlank(blogJson)) {
-                BlogItem blogItem = JSON.parseObject(blogJson, BlogItem.class);
-                EncodeUtils.encodeObj(blogItem);
-                return "BLOG [" + blogItem.getTitle() + "], id=[" + blogItem.getId() +"] is deleted";
+            String id = redisClient.lpop(BLOG_LIST_KEY);
+            if (StringUtils.isBlank(id)) {
+                return "ALL BLOG IS DELETED";
             }
+            redisClient.lrem(BLOG_LIST_KEY, -1, id);
+            String category = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_CATE_KEY);
+            redisClient.lrem(BLOG_CATE_LIST_KEY + getNameByCode(category), -1, id);
+            redisClient.del(BLOG_ITEM_KEY + id);
+            return "BLOG id=[" + id +"] is deleted";
         }
         return "OK";
     }
@@ -123,9 +135,9 @@ public class BlogController extends BaseController {
         }
 
         redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
-        redisClient.rpush(BLOG_CATE_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
+        redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
         redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
-
+        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
         return "OK";
     }
 

@@ -1,0 +1,10 @@
+数据存储格式：
+
+member:
+    key: member_list, field: mobile, value: member
+    key: member_tag, field: mobile, value: string
+
+blog:
+    key: blog_list, value: Id(时间戳) , list类型
+    key: blog_cate_list_${cate}, value: Id(时间戳), list类型，按品类存储
+    key: blog_item_${id}, field: blog_body, value: blogItem; field: blog_cate, value: category

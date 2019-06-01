@@ -43,6 +43,7 @@
 	</head>
 
 	<body data-spy="scroll">
+		<span id="currCate" th:text="${currCate}" style="display: none;"></span>
 		<!-- Navigation -->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
@@ -100,8 +101,8 @@
 		            </div>
 		            <div class="text-center"> 
 		                <ul class="pagination"> 
-		                    <li th:each="p:${pageNums}" th:class="${p == curr} ? 'active'"> <a href="#" th:href="@{'/blog?pageNum=' + ${p}}" th:text="${p}">1</a> </li>
-		                    <li th:if="${showNext}"> <a href="#" th:href="@{'/blog?pageNum=' + ${next}}">下一页</a> </li>
+		                    <li th:each="p:${pageNums}" th:class="${p == curr} ? 'active'"> <a href="#" th:href="@{'/blog?pageNum=' + ${p} + '&cate=' + ${currCate}}" th:text="${p}">1</a> </li>
+		                    <li th:if="${showNext}"> <a href="#" th:href="@{'/blog?pageNum=' + ${next} + '&cate=' + ${currCate}}">下一页</a> </li>
 		                </ul> 
 		            </div>
 		        </div>
@@ -119,12 +120,8 @@
 					<div class="blog-sidebar">
 						<h4 class="sidebar-title"><i class="fa fa-list-ul"></i> 类别</h4>
 						<hr>
-						<ul class="sidebar-list">
-							<li><a href="#">新闻时事</a></li>
-							<li><a href="#">公告通知</a></li>
-							<li><a href="#">情感话题</a></li>
-							<li><a href="#">技术艺术</a></li>
-							<li><a href="#">闲话杂说</a></li>
+						<ul class="sidebar-list" th:each="cate:${blogCates}">
+							<li><a href="#" th:href="@{'/blog?cate=' + ${cate.code}}" th:text="${cate.category}"></a></li>
 						</ul>
 					</div>
 					<!-- Recent Posts -->
@@ -313,6 +310,9 @@
 		<script>
 			$.ajax({
 				url:"blog/list",
+				data: {
+					"cate" : $("#currCate").text()
+				},
 				type:"GET",
 				contentType: 'text/json,charset=utf-8',
 				dataType:"json",
@@ -344,6 +344,9 @@
 
 			$.ajax({
 				url:"blog/comments",
+				data: {
+					"cate" : $("#currCate").text()
+				},
 				type:"GET",
 				contentType: 'text/json,charset=utf-8',
 				dataType:"json",

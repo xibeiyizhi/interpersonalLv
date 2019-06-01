@@ -29,11 +29,9 @@ public enum  BlogCategoryEnum {
         this.category = category;
     }
 
-    public static List<String> getBlogCategorys() {
-        List<String> cates = Lists.newArrayList();
-        for (BlogCategoryEnum categoryEnum: BlogCategoryEnum.values()) {
-            cates.add(categoryEnum.getCategory());
-        }
+    public static List<BlogCategoryEnum> getBlogCategories() {
+        List<BlogCategoryEnum> cates = Lists.newArrayList();
+        cates.addAll(Arrays.asList(BlogCategoryEnum.values()));
         return cates;
     }
 
