@@ -1,5 +1,6 @@
 package club.own.site.controller;
 
+import club.own.site.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
 import club.own.site.bean.Img;
 import club.own.site.bean.Quotation;
@@ -74,9 +75,10 @@ public class IndexController extends BaseController {
         int start = pageNum - 1 > 0 ? ((pageNum - 1) * pageSize) : 0;
         List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", start, pageSize, false);
         List<BlogItem> blogItems = Lists.newArrayList();
-        blogList.forEach(s -> {
-            if (StringUtils.isNotBlank(s)) {
-                BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
+        blogList.forEach(id -> {
+            if (StringUtils.isNotBlank(id)) {
+                String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
+                BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
                 blogItem.setCreateTime(DateTimeUtils.toBlogShowFormat(blogItem.getCreateTime()));
                 blogItems.add(blogItem);
             }
@@ -88,12 +90,14 @@ public class IndexController extends BaseController {
         mav.addObject("curr", pageNum);
         mav.addObject("next", pageNum + 1);
         mav.addObject("blogItems", blogItems);
+        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategorys());
         return mav;
     }
 
     @RequestMapping(value = "/singlepost", method = RequestMethod.GET)
     public ModelAndView singlePost() throws Exception {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategorys());
         mav.setViewName("single-post");
         return mav;
     }

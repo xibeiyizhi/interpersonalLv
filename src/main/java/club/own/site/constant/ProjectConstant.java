@@ -15,4 +15,8 @@ public class ProjectConstant {
     public static final String MEMBER_LIST_KEY = "member_list";
     public static final String MEMBER_TAGS_KEY = "member_tag";
     public static final String BLOG_LIST_KEY = "blog_list";
+    public static final String BLOG_ITEM_KEY = "blog_item_";
+    public static final String BLOG_BODY_KEY = "blog_body";
+    public static final String BLOG_CATE_KEY = "blog_cate_";
+
 }

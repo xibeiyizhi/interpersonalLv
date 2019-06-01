@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.management.StringValueExp;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import static club.own.site.BlogCategoryEnum.getNameByCode;
 import static club.own.site.constant.ProjectConstant.*;
 import static club.own.site.utils.DateTimeUtils.getCurrentFormatTime;
 import static club.own.site.utils.FileUploadUtils.getBasePath;
@@ -39,9 +41,10 @@ public class BlogController extends BaseController {
     public @ResponseBody String blogList (){
         List<String> blogList = redisClient.sort(BLOG_LIST_KEY, "", 0, 3, false);
         List<BlogItem> blogItems = Lists.newArrayList();
-        blogList.forEach(s -> {
-            if (StringUtils.isNotBlank(s)) {
-                BlogItem blogItem = JSON.parseObject(s, BlogItem.class);
+        blogList.forEach(id -> {
+            if (StringUtils.isNotBlank(id)) {
+                String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
+                BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
                 EncodeUtils.encodeObj(blogItem);
                 blogItems.add(blogItem);
             }
@@ -92,6 +95,7 @@ public class BlogController extends BaseController {
         blogItem.setBrief(params.get("brief"));
         blogItem.setContent(params.get("content"));
         String mobile = params.get("mobile");
+        String category = params.get("category");
         if (StringUtils.isNotBlank(mobile)) {
             String memberJson = redisClient.hget(MEMBER_LIST_KEY, mobile);
             Member member = JSON.parseObject(memberJson, Member.class);
@@ -117,7 +121,10 @@ public class BlogController extends BaseController {
                 FileUploadUtils.uploadFile(file, dirPath, desFileName);
             }
         }
-        redisClient.rpush(BLOG_LIST_KEY, JSON.toJSONString(blogItem));
+
+        redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
+        redisClient.rpush(BLOG_CATE_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
+        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
 
         return "OK";
     }
