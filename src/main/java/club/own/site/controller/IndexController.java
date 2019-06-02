@@ -102,8 +102,12 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping(value = "/singlepost", method = RequestMethod.GET)
-    public ModelAndView singlePost(@RequestParam(value = "id") String id) throws Exception {
+    public ModelAndView singlePost(@RequestParam(value = "id", required = false) String id) throws Exception {
         ModelAndView mav = new ModelAndView();
+        if (StringUtils.isBlank(id)) {
+            long len = redisClient.llen(BLOG_LIST_KEY);
+            id = redisClient.lindex(BLOG_LIST_KEY, Long.valueOf(len - 1).intValue());
+        }
         String blogItemJson = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
         if (StringUtils.isNotBlank(blogItemJson)) {
             BlogItem blogItem = JSON.parseObject(blogItemJson, BlogItem.class);
