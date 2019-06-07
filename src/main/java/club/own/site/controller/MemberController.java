@@ -92,7 +92,7 @@ public class MemberController extends BaseController {
                 String dirPath = getBasePath() + relativePath;
                 FileUploadUtils.uploadFile(file, dirPath, fileName);
             }
-            if(member != null && StringUtils.isNotBlank(member.getMobile())) {
+            if(StringUtils.isNotBlank(member.getMobile())) {
                 try{
                     redisClient.hset(MEMBER_LIST_KEY, member.getMobile(), JSON.toJSONString(member));
                 } catch (Exception e) {
@@ -119,7 +119,7 @@ public class MemberController extends BaseController {
         });
         res.sort(Comparator.comparing(Member::getId).reversed());
         // 最多显示4个
-        List<Member> subRes = res.subList(0, Math.min(4, res.size()));
+        List<Member> subRes = res.subList(0, Math.min(1, res.size()));
         return JSON.toJSONString(subRes);
     }
 
@@ -144,6 +144,15 @@ public class MemberController extends BaseController {
         mav.addObject("imgList", imgList);
         mav.addObject("tagList", tagList);
         mav.setViewName("detail");
+        return mav;
+    }
+
+    @GetMapping(value = "member/uploadpage")
+    public ModelAndView uploadPage() {
+        ModelAndView mav = new ModelAndView();
+        List<Member> members = redisClient.hgetAllValue(MEMBER_LIST_KEY, Member.class);
+        mav.addObject("members", members);
+        mav.setViewName("uploadimg");
         return mav;
     }
 
@@ -197,9 +206,19 @@ public class MemberController extends BaseController {
         return "OK";
     }
 
-    @GetMapping(value = "member/tagsave")
+    @GetMapping(value = "member/tag")
+    public ModelAndView tag (){
+        ModelAndView mav = new ModelAndView();
+        List<Member> members = redisClient.hgetAllValue(MEMBER_LIST_KEY, Member.class);
+        mav.addObject("members", members);
+        mav.setViewName("memtags");
+        return mav;
+    }
+
+    @PostMapping(value = "member/tagsave")
     public @ResponseBody String tagSave (@RequestParam(value = "phone") String phone, @RequestParam(value = "tags") String tags){
         if (StringUtils.isNotBlank(tags)) {
+            tags = tags.replaceAll("\r\n", "|");
             redisClient.hset(MEMBER_TAGS_KEY, phone, tags);
         }
         return "OK";

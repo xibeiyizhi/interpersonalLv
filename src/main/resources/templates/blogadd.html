@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,61 +54,53 @@
                 </div>
             </div>
         </nav>
-        <section id="contact">
+        <section id="contact" style="height: 100%">
             <div id="contactContainer" class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-lg-12">
                             <div class="text-center color-elements">
-                                <h2>加入本站</h2>
+                                <h2>添加新闻</h2>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-8">
-                            <form id="addMemForm" enctype="multipart/form-data" method="post">
+                            <form id="addBlogForm" enctype="multipart/form-data" method="get">
                                 <div class="row">
+                                    <div class="col-sm-3 col-xs-6 height-contact-element">
+                                        <div class="form-group">
+                                            <span style="color: #777777">当前新闻属于 </span>
+                                            <select name="phone" style="height: 32px; color: #E96840;">
+                                                <option th:each="mem:${members}" th:value="${mem.getMobile()}" th:text="${mem.getName()}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6 height-contact-element">
+                                        <div class="form-group">
+                                            <span style="color: #777777">类型：</span>
+                                            <select name="category" style="height: 32px; color: #E96840;">
+                                                <option th:each="cate:${blogCates}" th:value="${cate.code}" th:text="${cate.category}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-6 height-contact-element">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control custom-labels" id="name" placeholder="姓 名" required data-validation-required-message="请输入您的姓名!"/>
+                                            <input type="text" name="title" class="form-control custom-labels" id="title" placeholder="标 题" required data-validation-required-message="请输入标题!"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 height-contact-element">
                                         <div class="form-group">
-                                            <input type="tel" name="mobile" class="form-control custom-labels" id="mobile" placeholder="手 机" required data-validation-required-message="请输入您的手机!"/>
+                                            <input type="tel" name="brief" class="form-control custom-labels" id="brief" placeholder="摘 要" required data-validation-required-message="请输入摘要!"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 height-contact-element">
-                                        <div class="form-group">
-                                            <input type="text" name="message" class="form-control custom-labels" id="message" placeholder="签 名" required data-validation-required-message="请说点什么吧!"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 height-contact-element">
-                                        <div class="form-group">
-                                            <input type="file" name="photo" class="form-control custom-labels" id="photo" placeholder="画 像" required data-validation-required-message="请上传您的美照吧!"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 height-contact-element">
-                                        <div id="more"  class="color-elements" style="float:right;margin-right: 15px" onclick="switchMoreInput(this)">more</div>
-                                    </div>
-                                    <div id="moreInput" style="display:none">
-                                        <div class="col-sm-6 height-contact-element">
-                                            <div class="form-group">
-                                                <input type="text" name="profession" class="form-control custom-labels" id="profession" placeholder="职 业"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 height-contact-element">
-                                            <div class="form-group">
-                                                <input type="email" name="email" class="form-control custom-labels" id="email" placeholder="邮 箱"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 height-contact-element">
-                                            <div class="form-group">
-                                                <input type="text" name="address" class="form-control custom-labels" id="address" placeholder="地 址"/>
-                                            </div>
-                                        </div>
 
+                                    <div class="col-sm-12 height-contact-element">
+                                        <div class="form-group">
+                                            <textarea id="content" class="form-control" rows="10" name="content" style="color: #777777"></textarea>
+                                        </div>
                                     </div>
+
                                     <div class="col-sm-3 col-xs-6 height-contact-element">
                                         <div class="form-group">
                                             <button type="button" class="btn btn-md btn-custom btn-noborder-radius" name="submit" onclick="return submitForm();">添加</button>
@@ -150,52 +142,12 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="/static/js/bootstrap.min.js"></script>
 
-        <script src="/static/js/jquery.filer.js" type="text/javascript"></script>
-        <script src="/static/js/prettify.js" type="text/javascript"></script>
-        <script src="/static/js/scripts.js" type="text/javascript"></script>
-        <script src="/static/js/custom.js" type="text/javascript"></script>
         <script type="text/javascript">
-            function switchMoreInput(obj) {
-                if (obj.innerText === 'more') {
-                    obj.innerText = 'hide';
-                    document.getElementById('moreInput').style.display = 'block';
-                } else {
-                    obj.innerText = 'more';
-                    document.getElementById('moreInput').style.display = 'none';
-                }
-            }
-
-            function showErrTip(obj) {
-                let holder = $("#response_holder");
-                holder.fadeIn();
-                holder.text(obj.attr("data-validation-required-message"));
-                holder.fadeOut(3000);
-            }
 
             function submitForm() {
-                let nameObj = $('#name');
-                if (!nameObj.val()) {
-                    showErrTip(nameObj);
-                    return;
-                }
-                let mobileObj = $('#mobile');
-                if (!mobileObj.val()) {
-                    showErrTip(mobileObj);
-                    return;
-                }
-                let msgObj = $('#message');
-                if (!msgObj.val()) {
-                    showErrTip(msgObj);
-                    return;
-                }
-                let photoObj = $('#photo');
-                if (!photoObj.val()) {
-                    showErrTip(photoObj);
-                    return;
-                }
-                let formData = new FormData(document.getElementById('addMemForm'));
+                let formData = new FormData(document.getElementById('addBlogForm'));
                 $.ajax({
-                    url:'member/add',
+                    url:'add',
                     type:'post',
                     cache: false,
                     data: formData,
@@ -217,18 +169,13 @@
             }
 
             function clearForm() {
-               var form = document.getElementById('addMemForm')
+               var form = document.getElementById('addBlogForm')
                var nodes = $(form).find("input");
                for( var i=0; i< nodes.length; i++) {
                    var node = nodes[i];
                    $(node).val("");
                }
-               var filer = $(form).find(".jFiler");
-               var filerItems = $(form).find(".jFiler-items");
-               if (filerItems != null &&　filerItems.get(0) != null) {
-                   filer.get(0).removeChild(filerItems.get(0));
-               }
-               $(form).find(".jFiler-input-caption").find("span").text("请选择图片，jpg | jpeg | png | gif");
+               $("#tags").val("");
                $("#success").text("");
                $("#response_holder").text("");
             }

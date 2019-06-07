@@ -44,7 +44,7 @@
 						<li><a href="#home">主页</a></li>
 						<li><a href="/index#bloghome">新闻</a></li>
 						<li><a href="/services">功能</a></li>
-						<li><a href="/index#meet-team">亲友</a></li>
+						<li><a href="/index#meet-team">成员</a></li>
 						<li><a href="/index#portfolio1">作品</a></li>
 						<li><a href="/index#contact">找我</a></li>
 						<li><a href="/blog">博客</a></li>
@@ -175,7 +175,7 @@
 		<section id="meet-team">
 			<div class="container">
 				<div class="text-center">
-				<h2>亲友</h2>
+				<h2>新成员</h2>
 				<img class="img-responsive displayed" src="/static/images/short.png" alt="about">
 				</div>
 				<div class="row teamspace">
@@ -478,7 +478,7 @@
 						let memNode = $(temp).clone(true);
 						memNode.attr("id",mem.id);
 						memNode.find("h3").text(decodeURI(mem.name));
-						memNode.find("span").text(mem.showMobile + "	" + (mem.email || ''));
+						memNode.find("span").text(mem.showMobile + "	" + (decodeURIComponent(decodeURI(mem.email)) || ''));
 						memNode.find("p").text(decodeURI(mem.message));
 						memNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(mem.firstImgUrl))));
 						memNode.find("a").attr("href","/member/detail?phone=" + mem.mobile)

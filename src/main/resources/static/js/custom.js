@@ -189,13 +189,25 @@ $(document).ready(function(){
     //     templates: filer_default_opts.templates
     // });
     //
-    // $('#fileInput-5').filer({
-    //     limit: 3,
-    //     maxSize: 3,
-    //     extensions: ['jpg', 'jpeg', 'png', 'gif'],
-    //     showThumbs: true,
-    //     addMore: true
-    // });
+    $('#image').filer({
+        limit: 10,
+        maxSize: 3,
+        extensions: ['jpg', 'jpeg', 'png', 'gif'],
+        showThumbs: true,
+        addMore: true,
+        captions: {
+            button: $("#image").attr("placeholder"),
+            feedback: '请选择图片，jpg | jpeg | png | gif',
+            feedback2: "文件被选择",
+            removeConfirmation: "确认删除此文件吗?",
+            errors: {
+                filesLimit: "最多可上传 {{fi-limit}} 个文件.",
+                filesType: "仅可上传图片文件.",
+                filesSize: "{{fi-name}} 文件过大! 文件最大不能超过 {{fi-maxSize}} MB.",
+                filesSizeAll: "您所选择的文件过大! 文件大小总和不能超过 {{fi-maxSize}} MB."
+            }
+        }
+    });
     //
     // $('#fileInput-6').filer({
     //     changeInput: filer_default_opts.changeInput2,

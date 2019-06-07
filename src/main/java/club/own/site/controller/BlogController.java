@@ -1,5 +1,6 @@
 package club.own.site.controller;
 
+import club.own.site.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
 import club.own.site.bean.Comment;
 import club.own.site.bean.Member;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
@@ -141,7 +143,7 @@ public class BlogController extends BaseController {
         blogItem.setTitle(params.get("title"));
         blogItem.setBrief(params.get("brief"));
         blogItem.setContent(params.get("content"));
-        String mobile = params.get("mobile");
+        String mobile = params.get("phone");
         String category = params.get("category");
         if (StringUtils.isNotBlank(mobile)) {
             String memberJson = redisClient.hget(MEMBER_LIST_KEY, mobile);
@@ -174,6 +176,16 @@ public class BlogController extends BaseController {
         redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
         redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
         return "OK";
+    }
+
+    @GetMapping(value = "blog/addpage")
+    public ModelAndView addPage (){
+        ModelAndView mav = new ModelAndView();
+        List<Member> members = redisClient.hgetAllValue(MEMBER_LIST_KEY, Member.class);
+        mav.addObject("members", members);
+        mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
+        mav.setViewName("blogadd");
+        return mav;
     }
 
 }
