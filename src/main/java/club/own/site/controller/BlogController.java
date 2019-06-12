@@ -51,6 +51,7 @@ public class BlogController extends BaseController {
                 String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
                 if (StringUtils.isNotBlank(blogContent)) {
                     BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
+                    String imgUrl = blogItem.getFirstImgUrl();
                     EncodeUtils.encodeObj(blogItem);
                     blogItems.add(blogItem);
                 }
@@ -186,6 +187,31 @@ public class BlogController extends BaseController {
         mav.addObject("blogCates", BlogCategoryEnum.getBlogCategories());
         mav.setViewName("blogadd");
         return mav;
+    }
+
+    @PostMapping(value = "blog/autoadd")
+    public @ResponseBody String autoAdd (HttpServletRequest request){
+        Map<String, String> params = parseRequestParam(request.getParameterMap());
+        BlogItem blogItem = new BlogItem();
+        blogItem.setTitle(params.get("title"));
+        blogItem.setBrief("来源：" + params.get("brief"));
+        blogItem.setContent(params.get("content"));
+
+        String mobile = "13488788682";
+        String category = "0";
+        if (StringUtils.isNotBlank(mobile)) {
+            String memberJson = redisClient.hget(MEMBER_LIST_KEY, mobile);
+            Member member = JSON.parseObject(memberJson, Member.class);
+            blogItem.setAuthor(member);
+        }
+        blogItem.setCreateTime(getCurrentFormatTime());
+        blogItem.setFirstImgUrl(params.get("imgUrl"));
+
+        redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
+        redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
+        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
+        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
+        return "OK";
     }
 
 }
