@@ -74,7 +74,7 @@
 							</div>
 					</div>
 					</div>
-					<p th:text="${blogItem.getBrief()}"></p>
+					<p th:text="${blogItem.getBrief()}" style="width: 90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></p>
 					<p th:each="text:${blogBodyRichText}" th:text="${text}"></p>
 					<div class="mysharing">
 					<!-- Twitter -->
@@ -354,7 +354,7 @@
 					arr.forEach(function (blog) {
 						let blogNode = $(temp).clone(true);
 						blogNode.attr("id",blog.id);
-						blogNode.find("p").text(decodeURI(blog.brief));
+						blogNode.find("p").text(decodeURIComponent(decodeURI(blog.brief)));
 						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
 						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
 						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);

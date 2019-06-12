@@ -97,7 +97,8 @@
 		                        <span class="comments-padding"></span>
 		                        <i class="fa fa-comment"></i> <span th:text="${blog.viewCount}"></span> 浏览
 		                    </p>
-		                    <p th:text="${blog.brief}"></p>
+		                    <p th:text="${blog.brief}" style="width: 90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></p>
+							<p th:text="${blog.content}" style="width: 100%; text-indent: 30px"></p>
 		                </div>
 		            </div>
 		            <div class="text-center"> 
@@ -136,7 +137,7 @@
 							</a>
 							<div class="media-body">
 								<h4 class="media-heading"><a href="#">Post title 1</a></h4>
-								<p>This is some sample text. This is some sample text. This is some sample text.</p>
+								<p style="width: 100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">This is some sample text. This is some sample text. This is some sample text.</p>
 							</div>
 						</div>
 
@@ -324,7 +325,7 @@
 					arr.forEach(function (blog) {
 						let blogNode = $(temp).clone(true);
 						blogNode.attr("id",blog.id);
-						blogNode.find("p").text(decodeURI(blog.brief));
+						blogNode.find("p").text(decodeURIComponent(decodeURI(blog.brief)));
 						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
 						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
 						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
