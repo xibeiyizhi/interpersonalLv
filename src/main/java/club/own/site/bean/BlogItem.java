@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Data
@@ -24,5 +25,10 @@ public class BlogItem {
             firstImgUrl += "/" + firstImgUrl;
         }
         return firstImgUrl;
+    }
+
+    public List<Comment> getComments() {
+        this.comments.sort((o1, o2) -> Long.valueOf(o2.getId() - o1.getId()).intValue());
+        return this.comments;
     }
 }

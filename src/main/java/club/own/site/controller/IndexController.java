@@ -86,6 +86,11 @@ public class IndexController extends BaseController {
                     BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
                     blogItem.setCreateTime(DateTimeUtils.toBlogShowFormat(blogItem.getCreateTime()));
                     blogItems.add(blogItem);
+                } else {
+                    // 脏数据，删除
+                    if (Integer.valueOf(cateCode) >= 0) {
+                        redisClient.lrem(BLOG_CATE_LIST_KEY + getNameByCode(cateCode), -1, id);
+                    }
                 }
             }
         });

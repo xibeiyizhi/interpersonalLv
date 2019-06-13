@@ -26,4 +26,12 @@ public enum ProductionTypeEnum {
         this.desc = desc;
     }
 
+    public static String getNameByCode(int code) {
+        for (ProductionTypeEnum typeEnum: ProductionTypeEnum.values()) {
+            if (typeEnum.getCode() == code) {
+                return typeEnum.getName();
+            }
+        }
+        return "";
+    }
 }

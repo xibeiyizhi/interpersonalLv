@@ -61,6 +61,7 @@
 	    <div class="container blog singlepost">
 			<div class="row">
 				<article class="col-md-8">
+					<span id="blogId" th:text="${blogItem.getId()}" style="display: none"></span>
 			        <h1 class="page-header sidebar-title" th:text="${blogItem.getTitle()}"></h1>
 			        <img src="/static/images/unsplash1.jpg" th:src="@{${blogItem.getFirstImgUrl()}}" class="img-responsive" alt="photo" />
 			        <hr>
@@ -91,14 +92,14 @@
 			        <div class="comments1">
 						<div class="well">
 							<h4>添加评论:</h4>
-							<form th:action="@{'/blog/comment/add?id=' + ${blogItem.getId()}}" accept-charset="UTF-8" method="post">
+							<form id="commentForm" accept-charset="UTF-8">
 								<div class="form-group">
 									<textarea class="form-control" rows="3" name="comment" style="color: #777777"></textarea>
 								</div>
 								<select name="phone" style="height: 32px;">
 									<option th:each="mem:${members}" th:selected="${blogItem.getAuthor().getMobile().equals(mem.getMobile())}" th:value="${mem.getMobile()}" th:text="${mem.getName()}"></option>
 								</select>
-								<button type="submit" class="btn btn-primary">提交</button>
+								<button type="submit" class="btn btn-primary" onclick="return submitForm()">提交</button>
 							</form>
 						</div>
 						<hr>
@@ -397,6 +398,28 @@
 
 				}
 			})
+		</script>
+		<script>
+			function submitForm() {
+				let formData = new FormData(document.getElementById('commentForm'));
+				$.ajax({
+					url:'blog/comment/add?id=' + $("#blogId").text(),
+					type:'post',
+					cache: false,
+					data: formData,
+					processData: false,
+					contentType: false,
+					success: function (data) {
+						if (data === "OK") {
+							$("#commentForm").find("textarea").val("");
+							window.location.reload();
+						}
+					},
+					error: function (data) {
+
+					}
+				});
+			}
 		</script>
     </body>
 </html>

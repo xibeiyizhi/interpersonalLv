@@ -21,5 +21,6 @@ public class ProjectConstant {
     public static final String BLOG_ITEM_KEY = "blog_item_";
     public static final String BLOG_BODY_KEY = "blog_body";
     public static final String BLOG_CATE_KEY = "blog_cate";
+    public static final String PROD_CATE_LIST_KEY = "prod_cate_list_";
 
 }

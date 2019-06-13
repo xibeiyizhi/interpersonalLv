@@ -51,7 +51,6 @@ public class BlogController extends BaseController {
                 String blogContent = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_BODY_KEY);
                 if (StringUtils.isNotBlank(blogContent)) {
                     BlogItem blogItem = JSON.parseObject(blogContent, BlogItem.class);
-                    String imgUrl = blogItem.getFirstImgUrl();
                     EncodeUtils.encodeObj(blogItem);
                     blogItems.add(blogItem);
                 }
@@ -96,6 +95,9 @@ public class BlogController extends BaseController {
                                             HttpServletRequest request){
         Map<String, String> params = parseRequestParam(request.getParameterMap());
         String commentBody = params.get("comment");
+        if (StringUtils.isBlank(commentBody)) {
+            return "Comment is blank";
+        }
         String phone = StringUtils.isNotBlank(params.get("phone")) ? params.get("phone") : default_user_phone;
         String blogItemJson = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
         if (StringUtils.isNotBlank(blogItemJson)) {
@@ -109,6 +111,19 @@ public class BlogController extends BaseController {
                 comment.setAuthor(member);
             }
             blogItem.getComments().add(comment);
+            redisClient.hset(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY, JSON.toJSONString(blogItem));
+        }
+        return "OK";
+    }
+
+    @GetMapping(value = "blog/comment/del")
+    public @ResponseBody String delComment (@RequestParam(name = "id") String blogId,
+                                            HttpServletRequest request){
+
+        String blogItemJson = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
+        if (StringUtils.isNotBlank(blogItemJson)) {
+            BlogItem blogItem = JSON.parseObject(blogItemJson, BlogItem.class);
+            blogItem.getComments().clear();
             redisClient.hset(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY, JSON.toJSONString(blogItem));
         }
         return "OK";
