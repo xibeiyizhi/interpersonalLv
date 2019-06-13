@@ -211,29 +211,26 @@
 			<img class="img-responsive displayed" src="/static/images/short.png" alt="about">
 			</div>
 
-			<ul class="filter nav nav-pills">
-			  <li data-value="all" ><a class="active" href="#">全部</a></li>
-			  <li data-value="development"><a href="#">人</a></li>
-			  <li data-value="webdesign"><a href="#">景</a></li>
-			  <li data-value="mobileapps"><a href="#">其他</a></li>
+			<ul class="filter nav nav-pills" >
+			  <li data-value="all" th:each="type:${productionTypes}" th:attr="data-value=${type.getName()}"><a th:class="${type.getCode() == 0} ? 'active'" href="#" th:text="${type.getDesc()}">全部</a></li>
 			</ul>
  
 			<ul class="port2">
-			  <li data-type="development" data-id="id-1" class="port3">
+			  <li data-type="people" data-id="id-1" class="port3">
 				<a href="#" id="development1"><img src="/static/images/port1.jpg" alt=""></a></li>
-			  <li data-type="webdesign" data-id="id-2" class="port3">
+			  <li data-type="scenery" data-id="id-2" class="port3">
 				<a href="#" id="webdesign1"><img src="/static/images/port2.jpg" alt=""></a>
 			  </li>
-			  <li data-type="mobileapps" data-id="id-3" class="port3">
+			  <li data-type="other" data-id="id-3" class="port3">
 				<a href="#" id="mobileapps1"><img src="/static/images/port3.jpg" alt=""></a>
 			  </li>
-				<li data-type="development" data-id="id-4" class="port3">
+				<li data-type="people" data-id="id-4" class="port3">
 				<a href="#" id="development2"><img src="/static/images/port4.jpg" alt=""></a>
 			  </li>
-			  <li data-type="webdesign" data-id="id-5" class="port3">
+			  <li data-type="scenery" data-id="id-5" class="port3">
 				<a href="#" id="webdesign2"><img src="/static/images/port5.jpg" alt=""></a>
 			  </li>
-			  <li data-type="mobileapps" data-id="id-6" class="port3">
+			  <li data-type="other" data-id="id-6" class="port3">
 				<a href="#" id="mobileapps2"><img src="/static/images/port6.jpg" alt=""></a>
 			  </li>
 			</ul>

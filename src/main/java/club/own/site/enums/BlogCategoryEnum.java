@@ -1,4 +1,4 @@
-package club.own.site;
+package club.own.site.enums;
 
 import com.google.common.collect.Lists;
 import lombok.Getter;

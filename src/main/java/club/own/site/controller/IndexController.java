@@ -1,9 +1,10 @@
 package club.own.site.controller;
 
-import club.own.site.BlogCategoryEnum;
+import club.own.site.enums.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
 import club.own.site.bean.Member;
 import club.own.site.config.redis.RedisClient;
+import club.own.site.enums.ProductionTypeEnum;
 import club.own.site.utils.DateTimeUtils;
 import club.own.site.utils.TextUtils;
 import com.alibaba.fastjson.JSON;
@@ -17,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.constraints.NotNull;
 import java.util.*;
 
-import static club.own.site.BlogCategoryEnum.getNameByCode;
+import static club.own.site.enums.BlogCategoryEnum.getNameByCode;
 import static club.own.site.constant.ProjectConstant.*;
 
 @Slf4j
@@ -42,6 +42,7 @@ public class IndexController extends BaseController {
     public ModelAndView index() throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.addObject("version", System.currentTimeMillis());
+        mav.addObject("productionTypes", ProductionTypeEnum.values());
         mav.setViewName("index");
         return mav;
     }
