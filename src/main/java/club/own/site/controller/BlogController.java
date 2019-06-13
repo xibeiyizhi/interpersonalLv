@@ -10,6 +10,7 @@ import club.own.site.utils.FileUploadUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static club.own.site.enums.BlogCategoryEnum.getNameByCode;
 import static club.own.site.constant.ProjectConstant.*;
@@ -208,11 +210,19 @@ public class BlogController extends BaseController {
         blogItem.setCreateTime(getCurrentFormatTime());
         blogItem.setFirstImgUrl(params.get("imgUrl"));
 
+        Set<String> titles = Sets.newHashSet();
         long len = redisClient.llen(BLOG_LIST_KEY);
-        String blogId = redisClient.lindex(BLOG_LIST_KEY, Long.valueOf(len - 1).intValue());
-        String blogBody = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
-        BlogItem preBlog = JSON.parseObject(blogBody, BlogItem.class);
-        if (preBlog!= null && !preBlog.getTitle().equals(blogItem.getTitle())) {
+        int start = Long.valueOf(Math.max(0, len - 10)).intValue();
+        for (int i = start; i< len; i++) {
+            String blogId = redisClient.lindex(BLOG_LIST_KEY, i);
+            String blogBody = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
+            BlogItem preBlog = JSON.parseObject(blogBody, BlogItem.class);
+            if (preBlog == null) {
+                continue;
+            }
+            titles.add(preBlog.getTitle());
+        }
+        if (!titles.contains(blogItem.getTitle())) {
             redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
             redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
             redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
