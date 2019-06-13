@@ -390,6 +390,9 @@
 		</script>
 		<script>
 			function gallery() {
+				var proTop = $("#portfolio1").offset().top;
+				var height = $("#portfolio1").height();
+				$("#contact").css("top", proTop + height + 100);
 			};
 
 			var $itemsHolder = $('ul.port2');
@@ -398,10 +401,11 @@
 			$('ul.filter li').click(function (e) {
 				e.preventDefault();
 				$filterClass = $(this).attr('data-value');
+				let $filters;
 				if ($filterClass == 'all') {
-					var $filters = $itemsClone.find('li');
+					$filters = $itemsClone.find('li');
 				} else {
-					var $filters = $itemsClone.find('li[data-type=' + $filterClass + ']');
+					$filters = $itemsClone.find('li[data-type=' + $filterClass + ']');
 				}
 				$itemsHolder.quicksand(
 						$filters,
