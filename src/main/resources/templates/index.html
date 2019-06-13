@@ -216,8 +216,8 @@
 			</ul>
  
 			<ul class="port2" id="prodContainer">
-			  <li id="prodTemplate" data-type="people" data-id="id-1" class="port3" style="display: none">
-				<a href="#" id="people1"><img src="/static/images/port1.jpg" alt=""></a>
+			  <li th:each="prod:${prodList}" th:id="${prod.getId()}" th:attr="data-type=${prod.getType()} data-id=id-${prod.index}" class="port3">
+				<a href="#" th:id="${prod.getType()}-${prod.index}"><img th:src="@{'/static/img/prod/' + ${prod.title}}" alt=""></a>
 			  </li>
 			</ul>
 		  </div> 
@@ -471,32 +471,6 @@
 				},
 				error:function (data) {
 					
-				}
-			})
-		</script>
-		<script>
-			$.ajax({
-				url:"prod/list",
-				type:"GET",
-				contentType: 'text/json,charset=utf-8',
-				dataType:"json",
-				success:function (data) {
-					let arr = eval(data);
-					let temp = $("#prodTemplate");
-					let container = $("#prodContainer");
-					arr.forEach(function (prod) {
-						let prodNode = $(temp).clone(true);
-						prodNode.attr("id",prod.id);
-						prodNode.attr("data-type", prod.type);
-						prodNode.attr("data-id", "id-" + prod.id);
-						prodNode.find("a").attr("id", prod.type + "-" + prod.id);
-						prodNode.find("img").attr("src", "/static/img/prod/" + prod.title);
-						prodNode.css("display", "block");
-						container.append(prodNode);
-					})
-				},
-				error:function (data) {
-
 				}
 			})
 		</script>

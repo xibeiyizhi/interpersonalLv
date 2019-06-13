@@ -35,36 +35,6 @@ public class ProdController extends BaseController{
     @Autowired
     private RedisClient redisClient;
 
-    @GetMapping(value = "prod/list")
-    public @ResponseBody
-    String prodList (@RequestParam(name = "cate", required = false, defaultValue = "0") int cateCode){
-        List<String> typeNames = Lists.newArrayList();
-        if (cateCode == 0) {
-            for (ProductionTypeEnum typeEnum : ProductionTypeEnum.values()) {
-                if (typeEnum.getCode() != 0) {
-                    typeNames.add(typeEnum.getName());
-                }
-            }
-        } else {
-            typeNames.add(ProductionTypeEnum.getNameByCode(cateCode));
-        }
-        List<ProdItem> prodItems = Lists.newArrayList();
-        for (String typeName : typeNames) {
-            String key = PROD_CATE_LIST_KEY + typeName;
-            List<String> prodList = redisClient.sort(key, "", 0, 3, false);
-            prodList.forEach(id -> {
-                if (StringUtils.isNotBlank(id)) {
-                    ProdItem prodItem = new ProdItem();
-                    prodItem.setId(Long.valueOf(id));
-                    prodItem.setTitle(id + ".jpg");
-                    prodItem.setType(typeName);
-                    prodItems.add(prodItem);
-                }
-            });
-        }
-        return JSON.toJSONString(prodItems);
-    }
-
     @PostMapping(value = "prod/upload")
     public @ResponseBody String upload(HttpServletRequest request) {
         Map<String, String> params = parseRequestParam(request.getParameterMap());
