@@ -1,10 +1,10 @@
 package club.own.site.controller;
 
-import club.own.site.bean.ProdItem;
-import club.own.site.enums.BlogCategoryEnum;
 import club.own.site.bean.BlogItem;
 import club.own.site.bean.Member;
+import club.own.site.bean.ProdItem;
 import club.own.site.config.redis.RedisClient;
+import club.own.site.enums.BlogCategoryEnum;
 import club.own.site.enums.ProductionTypeEnum;
 import club.own.site.utils.DateTimeUtils;
 import club.own.site.utils.TextUtils;
@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
-import static club.own.site.enums.BlogCategoryEnum.getNameByCode;
 import static club.own.site.constant.ProjectConstant.*;
+import static club.own.site.enums.BlogCategoryEnum.getNameByCode;
 
 @Slf4j
 @Controller
@@ -34,27 +35,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView root() throws Exception {
-        List<String> typeNames = Lists.newArrayList();
-        for (ProductionTypeEnum typeEnum : ProductionTypeEnum.values()) {
-            if (typeEnum.getCode() != 0) {
-                typeNames.add(typeEnum.getName());
-            }
-        }
-
-        List<ProdItem> prodItems = Lists.newArrayList();
-        for (String typeName : typeNames) {
-            String key = PROD_CATE_LIST_KEY + typeName;
-            List<String> prodList = redisClient.sort(key, "", 0, 3, false);
-            prodList.forEach(id -> {
-                if (StringUtils.isNotBlank(id)) {
-                    ProdItem prodItem = new ProdItem();
-                    prodItem.setId(Long.valueOf(id));
-                    prodItem.setTitle(id + ".jpg");
-                    prodItem.setType(typeName);
-                    prodItems.add(prodItem);
-                }
-            });
-        }
+        List<ProdItem> prodItems = getProdItems();
         ModelAndView mav = new ModelAndView();
         mav.addObject("version", System.currentTimeMillis());
         mav.addObject("productionTypes", ProductionTypeEnum.values());
@@ -68,6 +49,7 @@ public class IndexController extends BaseController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("version", System.currentTimeMillis());
         mav.addObject("productionTypes", ProductionTypeEnum.values());
+        mav.addObject("prodList",  getProdItems());
         mav.setViewName("index");
         return mav;
     }

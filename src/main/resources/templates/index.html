@@ -216,8 +216,8 @@
 			</ul>
  
 			<ul class="port2" id="prodContainer">
-			  <li th:each="prod:${prodList}" th:id="${prod.getId()}" th:attr="data-type=${prod.getType()} data-id=id-${prod.index}" class="port3">
-				<a href="#" th:id="${prod.getType()}-${prod.index}"><img th:src="@{'/static/img/prod/' + ${prod.title}}" alt=""></a>
+			  <li th:each="prod:${prodList}" th:id="${prod.getId()}" th:attr="data-type=${prod.getType()},data-id='id-' + ${prodStat.index + 1}" class="port3">
+				<a href="#" th:id="${prod.getType()} + '-' + ${prodStat.index + 1}"><img th:src="@{'/static/img/prod/' + ${prod.title}}" alt=""></a>
 			  </li>
 			</ul>
 		  </div> 

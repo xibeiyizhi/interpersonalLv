@@ -1,11 +1,15 @@
 package club.own.site.controller;
 
+import club.own.site.bean.ProdItem;
+import club.own.site.config.redis.RedisClient;
+import club.own.site.enums.ProductionTypeEnum;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.lang.reflect.Field;
@@ -14,9 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static club.own.site.constant.ProjectConstant.PROD_CATE_LIST_KEY;
+
 @Slf4j
 @Controller
 public class BaseController {
+
+    @Autowired
+    private RedisClient redisClient;
 
     Map<String, String> parseRequestParam(Map<String, String[]> parameterMap) {
         Map<String, String> res = Maps.newHashMap();
@@ -98,5 +107,30 @@ public class BaseController {
             }
         }
         return JSON.toJSONString(dataArr);
+    }
+
+    public List<ProdItem> getProdItems() {
+        List<String> typeNames = Lists.newArrayList();
+        for (ProductionTypeEnum typeEnum : ProductionTypeEnum.values()) {
+            if (typeEnum.getCode() != 0) {
+                typeNames.add(typeEnum.getName());
+            }
+        }
+
+        List<ProdItem> prodItems = Lists.newArrayList();
+        for (String typeName : typeNames) {
+            String key = PROD_CATE_LIST_KEY + typeName;
+            List<String> prodList = redisClient.sort(key, "", 0, 10, false);
+            prodList.forEach(id -> {
+                if (StringUtils.isNotBlank(id)) {
+                    ProdItem prodItem = new ProdItem();
+                    prodItem.setId(Long.valueOf(id));
+                    prodItem.setTitle(id + ".jpg");
+                    prodItem.setType(typeName);
+                    prodItems.add(prodItem);
+                }
+            });
+        }
+        return prodItems;
     }
 }
