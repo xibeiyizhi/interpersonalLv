@@ -116,10 +116,13 @@ public class BlogController extends BaseController {
     public @ResponseBody String blogDel (@RequestParam(value = "idx", required = false) String idx){
         if (StringUtils.isNotBlank(idx)) {
             String id = redisClient.lindex(BLOG_LIST_KEY, Integer.valueOf(idx));
+            if (StringUtils.isBlank(id)) {
+                return "idx is not exist";
+            }
             redisClient.lrem(BLOG_LIST_KEY, -1, id);
             String category = redisClient.hget(BLOG_ITEM_KEY + id, BLOG_CATE_KEY);
             redisClient.lrem(BLOG_CATE_LIST_KEY + getNameByCode(category), -1, id);
-            redisClient.hdel(BLOG_ITEM_KEY + id);
+            redisClient.del(BLOG_ITEM_KEY + id);
         } else {
             String id = redisClient.lpop(BLOG_LIST_KEY);
             if (StringUtils.isBlank(id)) {
@@ -205,10 +208,17 @@ public class BlogController extends BaseController {
         blogItem.setCreateTime(getCurrentFormatTime());
         blogItem.setFirstImgUrl(params.get("imgUrl"));
 
-        redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
-        redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
-        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
-        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
+        long len = redisClient.llen(BLOG_LIST_KEY);
+        String blogId = redisClient.lindex(BLOG_LIST_KEY, Long.valueOf(len - 1).intValue());
+        String blogBody = redisClient.hget(BLOG_ITEM_KEY + blogId, BLOG_BODY_KEY);
+        BlogItem preBlog = JSON.parseObject(blogBody, BlogItem.class);
+        if (preBlog!= null && !preBlog.getTitle().equals(blogItem.getTitle())) {
+            redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
+            redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
+            redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
+            redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
+        }
+
         return "OK";
     }
 

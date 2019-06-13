@@ -118,7 +118,7 @@ public class MemberController extends BaseController {
             }
         });
         res.sort(Comparator.comparing(Member::getId).reversed());
-        // 最多显示4个
+        // 最多显示1个
         List<Member> subRes = res.subList(0, Math.min(1, res.size()));
         return JSON.toJSONString(subRes);
     }
