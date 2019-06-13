@@ -356,6 +356,7 @@
 						let blogNode = $(temp).clone(true);
 						blogNode.attr("id",blog.id);
 						blogNode.find("p").text(decodeURIComponent(decodeURI(blog.brief)));
+						blogNode.find(".pull-left").attr("href","/singlepost?id="+ blog.id);
 						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
 						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
 						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
