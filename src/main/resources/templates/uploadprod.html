@@ -154,11 +154,11 @@
                             $("#response_holder").text("");
                             setTimeout("clearForm()", 5000);
                         } else {
-                            $("#response_holder").text(decodeURI(data));
+                            $("#response_holder").text(JSON.stringify(data));
                         }
                     },
                     error: function (data) {
-                        $("#response_holder").text(decodeURI(data));
+                        $("#response_holder").text(JSON.stringify(data));
                     }
                 });
             }
