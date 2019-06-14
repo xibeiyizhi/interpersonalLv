@@ -69,7 +69,7 @@
                                     <div class="col-sm-12 height-contact-element">
                                         <div class="form-group">
                                             <span style="color: #777777">当前正在为</span>
-                                            <select name="phone" style="height: 32px; color: #E96840;">
+                                            <select name="phone" style="height: 32px; color: #E96840;background-color: transparent;border: 0;">
                                                 <option th:each="mem:${members}" th:value="${mem.getMobile()}" th:text="${mem.getName()}"></option>
                                             </select>
                                             <span style="color: #777777">制作标签，请在以下输入框中输入标签内容，多个标签请换行表示.</span>

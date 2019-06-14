@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,6 +35,14 @@ public class ProdController extends BaseController{
 
     @Autowired
     private RedisClient redisClient;
+
+    @GetMapping(value = "prod/uploadpage")
+    public ModelAndView uploadPage() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("productionTypes", ProductionTypeEnum.values());
+        mav.setViewName("uploadprod");
+        return mav;
+    }
 
     @PostMapping(value = "prod/upload")
     public @ResponseBody String upload(HttpServletRequest request) {
