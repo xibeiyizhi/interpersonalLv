@@ -645,6 +645,7 @@
 							$.each(attributes, function() {
 								elem.attr(this.name, this.value);
 							});
+							elem.prop("jFiler", s.prop("jFiler"));
 							s.after(elem);
 							f._unbindInput();
 							sl.push(elem);
