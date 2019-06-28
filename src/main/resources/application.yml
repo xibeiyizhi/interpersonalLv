@@ -31,7 +31,7 @@ redis:
     max-wait: 10000
     max-idle: 10
     min-idle: 10
-  password: 123456
+  password: Jz03548435016
 
 basePath: /root/webapps/interpersonal_lv/fileStore
 
@@ -61,6 +61,6 @@ redis:
     max-wait: 10000
     max-idle: 10
     min-idle: 10
-  password: 123456
+  password: Jz03548435016
 
 basePath: /Users/jiazheng/work/workspace/interpersonalLv/src/main/resources #E:\workspace\interpersonalLv\src\main\resources  #
