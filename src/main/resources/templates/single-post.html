@@ -27,6 +27,11 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script src="/static/js/version.js"></script>
+
+		<!-- jQuery -->
+		<script src="/static/js/jquery-2.1.1.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/static/js/bootstrap.min.js"></script>
 	</head>
 
     <body data-spy="scroll">
@@ -60,7 +65,7 @@
     <!-- Page Content -->
 	    <div class="container blog singlepost">
 			<div class="row">
-				<article class="col-md-8">
+				<article class="col-md-8" id="article">
 					<span id="blogId" th:text="${blogItem.getId()}" style="display: none"></span>
 			        <h1 class="page-header sidebar-title" th:text="${blogItem.getTitle()}"></h1>
 			        <img src="/static/images/unsplash1.jpg" th:src="@{${blogItem.getFirstImgUrl()}}" class="img-responsive" alt="photo" />
@@ -73,15 +78,20 @@
 								 <span> <i class="fa fa-tag"></i> <a href="#" th:href="@{'/blog?cate=' + ${blogCateCode}}" rel="tag" th:text="${blogCate}"></a></span>
 								 <div class="pull-right"><span><i class="fa fa-eye"></i> <span th:text="${blogItem.getViewCount()}"></span></span> <span><i class="fa fa-comment"></i> <span th:text="${blogItem.getComments().size()}"></span></span></div>
 							</div>
-					</div>
+						</div>
 					</div>
 					<p th:text="${blogItem.getBrief()}" style="width: 90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></p>
-					<p th:each="text:${blogBodyRichText}" th:text="${text}"></p>
+					<script th:inline="javascript" th:each="text:${blogBodyRichText}">
+						let p = document.createElement("p");
+						let content = decodeURIComponent([[${text}]]);
+						$(p).html(content);
+						$("#article").append(p);
+					</script>
 					<div class="mysharing">
 					<!-- Twitter -->
 					<a href="http://twitter.com/index?status=" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i	 class="fa fa-twitter"></i> Twitter</a>
 					 <!-- Facebook -->
-					<a href="#/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+					<a href="#" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
 					<!-- Google+ -->
 					<a href="https://plus.google.com/share?url=" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
 					<!-- LinkedIn --> 
@@ -282,11 +292,6 @@
 				</div>
 			</div>
 		</footer>
-
-        <!-- jQuery -->
-        <script src="/static/js/jquery-2.1.1.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/static/js/bootstrap.min.js"></script>
 
         <!--Jquery Smooth Scrolling-->
         <script>
