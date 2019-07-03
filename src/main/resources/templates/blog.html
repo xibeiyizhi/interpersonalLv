@@ -85,7 +85,8 @@
 		                <div class="col-sm-4 col-md-4 ">
 		                    <div class="blog-thumb" ontouchstart="addTouchClass(this)" ontouchend="removeTouchClass(this)">
 		                        <a href="#" th:href="@{'/singlepost?id='+ ${blog.id}}">
-		                            <img class="img-responsive" th:src="@{${blog.firstImgUrl}}" alt="photo">
+		                            <img th:if="${blog.firstImgUrl != null}" class="img-responsive" th:src="@{${blog.firstImgUrl}}" alt="photo">
+									<img th:if="${blog.firstImgUrl == null}" class="img-responsive" src="/static/images/blog2.jpg" alt="photo">
 		                        </a>
 		                    </div>
 		                </div>
@@ -327,7 +328,11 @@
 						blogNode.attr("id",blog.id);
 						blogNode.find("p").text(decodeURIComponent(decodeURI(blog.brief)));
 						blogNode.find(".pull-left").attr("href","/singlepost?id="+ blog.id);
-						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						if (blog.firstImgUrl != null && blog.firstImgUrl) {
+							blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						} else {
+							blogNode.find("img").attr("src", setVersion("/static/images/blog2.jpg"));
+						}
 						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
 						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
 						blogNode.on('touchstart', function () {

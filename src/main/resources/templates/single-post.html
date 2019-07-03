@@ -68,7 +68,8 @@
 				<article class="col-md-8" id="article">
 					<span id="blogId" th:text="${blogItem.getId()}" style="display: none"></span>
 			        <h1 class="page-header sidebar-title" th:text="${blogItem.getTitle()}"></h1>
-			        <img src="/static/images/unsplash1.jpg" th:src="@{${blogItem.getFirstImgUrl()}}" class="img-responsive" alt="photo" />
+					<img th:if="${blogItem.getFirstImgUrl() != null}" th:src="@{${blogItem.getFirstImgUrl()}}" class="img-responsive" alt="photo" />
+			        <img th:if="${blogItem.getFirstImgUrl() == null}" src="/static/images/blog2.jpg" class="img-responsive" alt="photo" />
 			        <hr>
 					<div class="row">
 						<div class="col-md-12">
@@ -362,7 +363,11 @@
 						blogNode.attr("id",blog.id);
 						blogNode.find("p").text(decodeURIComponent(decodeURI(blog.brief)));
 						blogNode.find(".pull-left").attr("href","/singlepost?id="+ blog.id);
-						blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						if (blog.firstImgUrl != null && blog.firstImgUrl) {
+							blogNode.find("img").attr("src", setVersion(decodeURIComponent(decodeURI(blog.firstImgUrl))));
+						} else {
+							blogNode.find("img").attr("src", setVersion("/static/images/blog2.jpg"));
+						}
 						blogNode.find(".media-heading").find("a").text(decodeURI(blog.title));
 						blogNode.find(".media-heading").find("a").attr("href","/singlepost?id="+ blog.id);
 						blogNode.on('touchstart', function () {
