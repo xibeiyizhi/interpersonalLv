@@ -157,7 +157,7 @@ public class BlogController extends BaseController {
     @PostMapping(value = "blog/add")
     public @ResponseBody String add (MultipartHttpServletRequest request){
         Map<String, String> params = parseRequestParam(request.getParameterMap());
-        List<MultipartFile> files = request.getFiles("photoArr");
+        List<MultipartFile> files = request.getFiles("photo");
         BlogItem blogItem = new BlogItem();
         blogItem.setTitle(params.get("title"));
         blogItem.setBrief(params.get("brief"));
@@ -192,8 +192,8 @@ public class BlogController extends BaseController {
 
         redisClient.rpush(BLOG_LIST_KEY, String.valueOf(blogItem.getId()));
         redisClient.rpush(BLOG_CATE_LIST_KEY + getNameByCode(category), String.valueOf(blogItem.getId()));
-        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
         redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_CATE_KEY, category);
+        redisClient.hset(BLOG_ITEM_KEY + blogItem.getId(), BLOG_BODY_KEY, JSON.toJSONString(blogItem));
         return "OK";
     }
 
