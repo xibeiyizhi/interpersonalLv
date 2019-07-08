@@ -78,7 +78,7 @@ public class IndexController extends BaseController {
         } else if (pageNum <= 2) {
             paginationEnd = Math.min(paginationSize, totalPageCount);
         } else {
-            paginationStart = totalPageCount - paginationSize;
+            paginationStart = Math.max(totalPageCount - paginationSize, 0);
         }
         for (int i= paginationStart; i <= paginationEnd; i++) {
             showPageNums.add(i);
