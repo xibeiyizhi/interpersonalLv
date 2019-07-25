@@ -130,7 +130,7 @@ public class MemberController extends BaseController {
         ModelAndView mav = new ModelAndView();
         List<Img> imgList = new ArrayList<>();
         List<String> tagList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(member.getPhotos())) {
+        if (member != null && CollectionUtils.isNotEmpty(member.getPhotos())) {
             for (int i = 0; i< member.getPhotos().size(); i++) {
                 Img img = new Img(member.getPhotos().get(i), "pic" + (i+1));
                 imgList.add(img);
